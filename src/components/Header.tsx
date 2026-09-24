@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Mark } from "@/components/Art";
 import { cta, event, nav } from "@/content/site";
 
 export function Header() {
@@ -17,6 +18,7 @@ export function Header() {
     <header className="site-header" data-scrolled={scrolled}>
       <div className="wrap">
         <a className="wordmark" href="#top" aria-label={`${event.name}, back to top`}>
+          <Mark className="wordmark-mark" />
           {event.name}
           <small>on Soko</small>
         </a>
@@ -29,7 +31,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <a className="btn btn-small" href="#priority-list">
+        <a className="btn btn-small btn-accent" href="#priority-list">
           {cta.primary}
         </a>
       </div>

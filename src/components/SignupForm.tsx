@@ -98,7 +98,7 @@ export function SignupForm() {
 
   if (status.state === "success") {
     return (
-      <div className="form form-success" role="status" aria-live="polite">
+      <div className="form form-success brackets" role="status" aria-live="polite">
         <div className="success-mark" aria-hidden>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M4 10.5l4 4 8-9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -113,7 +113,11 @@ export function SignupForm() {
   const submitting = status.state === "submitting";
 
   return (
-    <form className="form" onSubmit={onSubmit} noValidate aria-describedby={`${id}-status`}>
+    <form className="form brackets" onSubmit={onSubmit} noValidate aria-describedby={`${id}-status`}>
+      <p className="form-head mono">
+        <span>Priority list</span>
+        <span>Name + email only</span>
+      </p>
       <div className="field">
         <label htmlFor={`${id}-name`}>Name</label>
         <input
@@ -182,7 +186,7 @@ export function SignupForm() {
         )}
       </div>
 
-      <button className="btn" type="submit" disabled={submitting} aria-disabled={submitting}>
+      <button className="btn btn-accent" type="submit" disabled={submitting} aria-disabled={submitting}>
         {submitting ? (
           <>
             <span className="spinner" aria-hidden /> Saving your details…

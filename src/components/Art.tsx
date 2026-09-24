@@ -1,144 +1,173 @@
 import Image from "next/image";
-import type { ImageSlot } from "@/content/site";
+import type { ImageSlot, Pillar } from "@/content/site";
 
 const showNotes = process.env.NODE_ENV === "development";
 
-/** Sunrise over the sea: the hero composition used until real photography arrives. */
-export function HorizonArt({ title }: { title?: string }) {
+const C = { forest: "#263B34", moss: "#506C50", leaf: "#9CAF79", clay: "#BF765A", ink3: "#5D6964", line: "rgba(20,32,27,0.14)" };
+
+/** Soko's connected-circles mark, drawn as a compact logo glyph. */
+export function Mark({ className }: { className?: string }) {
   return (
-    <svg className="art" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role={title ? "img" : undefined} aria-hidden={title ? undefined : true} aria-label={title}>
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#E5D5BC" />
-          <stop offset="0.75" stopColor="#EFDCC3" />
-          <stop offset="1" stopColor="#E9C9AE" />
-        </linearGradient>
-        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#506C50" />
-          <stop offset="1" stopColor="#263B34" />
-        </linearGradient>
-        <clipPath id="above">
-          <rect x="0" y="0" width="400" height="300" />
-        </clipPath>
-      </defs>
-      <rect width="400" height="300" fill="url(#sky)" />
-      <g clipPath="url(#above)">
-        <circle cx="200" cy="290" r="150" fill="none" stroke="#BF765A" strokeOpacity="0.22" strokeWidth="1.5" />
-        <circle cx="200" cy="290" r="112" fill="none" stroke="#BF765A" strokeOpacity="0.3" strokeWidth="1.5" />
-        <g className="sun">
-          <circle cx="200" cy="290" r="74" fill="#BF765A" />
-          <circle cx="248" cy="262" r="36" fill="#9CAF79" opacity="0.9" />
-          <circle cx="232" cy="248" r="10" fill="#F7F3E9" />
+    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+      <circle cx="9" cy="9" r="6" fill={C.moss} />
+      <circle cx="15" cy="10" r="6" fill={C.clay} fillOpacity="0.9" />
+      <circle cx="12" cy="15" r="6" fill={C.leaf} fillOpacity="0.95" />
+      <circle cx="12" cy="12" r="2" fill="#FBFBF8" />
+    </svg>
+  );
+}
+
+/**
+ * Hero figure: the four programme domains arranged around a personal
+ * baseline. A schematic of the weekend's structure, not data.
+ */
+export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
+  const colours = [C.moss, C.clay, C.forest, C.leaf];
+  const pos = [
+    { x: 126, y: 126, ly: -30 },
+    { x: 374, y: 126, ly: -30 },
+    { x: 374, y: 374, ly: 44 },
+    { x: 126, y: 374, ly: 44 },
+  ];
+  const ticks = Array.from({ length: 72 }, (_, i) => i * 5);
+  return (
+    <svg className="diagram" viewBox="0 0 500 500" role="img" aria-labelledby="diagram-title diagram-desc">
+      <title id="diagram-title">The four domains of the Clarity weekend</title>
+      <desc id="diagram-desc">
+        {pillars.map((p) => p.title).join(", ")}, arranged around your private baseline.
+      </desc>
+
+      {/* scale ring */}
+      <g stroke={C.ink3} strokeOpacity="0.45">
+        {ticks.map((deg) => {
+          const long = deg % 45 === 0;
+          const r1 = long ? 222 : 228;
+          const a = (deg * Math.PI) / 180;
+          return (
+            <line
+              key={deg}
+              x1={250 + r1 * Math.cos(a)}
+              y1={250 + r1 * Math.sin(a)}
+              x2={250 + 234 * Math.cos(a)}
+              y2={250 + 234 * Math.sin(a)}
+              strokeWidth={long ? 1.2 : 0.8}
+            />
+          );
+        })}
+      </g>
+
+      <circle cx="250" cy="250" r="175" fill="none" stroke={C.line} />
+      <circle cx="250" cy="250" r="100" fill="none" stroke={C.line} strokeDasharray="2 5" />
+      <line x1="250" y1="40" x2="250" y2="460" stroke={C.line} />
+      <line x1="40" y1="250" x2="460" y2="250" stroke={C.line} />
+
+      {/* orbiting marker */}
+      <g className="orbit">
+        <circle cx="425" cy="250" r="3.5" fill={C.clay} />
+      </g>
+
+      {/* spokes */}
+      {pos.map((p, i) => (
+        <line key={i} x1="250" y1="250" x2={p.x} y2={p.y} stroke={colours[i]} strokeOpacity="0.55" strokeWidth="1.2" />
+      ))}
+
+      {/* centre: you */}
+      <circle className="pulse" cx="250" cy="250" r="58" fill="none" stroke={C.moss} strokeWidth="1.5" />
+      <circle cx="250" cy="250" r="52" fill={C.forest} />
+      <text x="250" y="246" textAnchor="middle" style={{ fill: "#F4F6F1", fontSize: 12 }}>
+        YOU
+      </text>
+      <text x="250" y="263" textAnchor="middle" style={{ fill: "#9CAF79", fontSize: 9.5 }}>
+        BASELINE
+      </text>
+
+      {/* nodes */}
+      {pillars.slice(0, 4).map((p, i) => (
+        <g key={p.key}>
+          <circle cx={pos[i].x} cy={pos[i].y} r="16" fill="#FBFBF8" stroke={colours[i]} strokeWidth="1.5" />
+          <circle cx={pos[i].x} cy={pos[i].y} r="7" fill={colours[i]} />
+          <text x={pos[i].x} y={pos[i].y + pos[i].ly - 14} textAnchor="middle">
+            {p.code}
+          </text>
+          <text className="node-title" x={pos[i].x} y={pos[i].y + pos[i].ly + 4} textAnchor="middle">
+            {p.title}
+          </text>
         </g>
-      </g>
-      <rect y="300" width="400" height="200" fill="url(#sea)" />
-      <line x1="0" y1="300" x2="400" y2="300" stroke="#F7F3E9" strokeOpacity="0.55" strokeWidth="1.5" />
-      <g stroke="#BF765A" strokeLinecap="round" strokeWidth="3">
-        <line x1="150" y1="318" x2="250" y2="318" strokeOpacity="0.8" />
-        <line x1="165" y1="334" x2="235" y2="334" strokeOpacity="0.65" />
-        <line x1="176" y1="352" x2="224" y2="352" strokeOpacity="0.5" />
-        <line x1="186" y1="372" x2="214" y2="372" strokeOpacity="0.38" />
-        <line x1="194" y1="394" x2="206" y2="394" strokeOpacity="0.28" />
-      </g>
-      <g stroke="#F7F3E9" strokeOpacity="0.14" strokeWidth="1">
-        <line x1="20" y1="336" x2="120" y2="336" />
-        <line x1="290" y1="346" x2="380" y2="346" />
-        <line x1="40" y1="382" x2="140" y2="382" />
-        <line x1="260" y1="410" x2="360" y2="410" />
-        <line x1="60" y1="440" x2="170" y2="440" />
-      </g>
+      ))}
+
+      <text x="250" y="498" textAnchor="middle" style={{ fontSize: 10, fill: C.ink3 }}>
+        FIG. 01 · FOUR DOMAINS, ONE WEEKEND
+      </text>
     </svg>
   );
 }
 
-function PlaceArt() {
+/** Line glyphs for each domain. */
+export function DomainGlyph({ domain, className }: { domain: string; className?: string }) {
+  const common = { fill: "none", stroke: C.forest, strokeWidth: 1.4, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
   return (
-    <svg className="art" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="300" height="400" fill="#506C50" />
-      <circle cx="210" cy="90" r="120" fill="#9CAF79" opacity="0.35" />
-      <circle cx="70" cy="140" r="90" fill="#263B34" opacity="0.35" />
-      <path d="M0 260 Q150 215 300 260 L300 400 L0 400 Z" fill="#E5D5BC" />
-      <path d="M48 262 L48 190 Q48 160 78 160 L132 160 Q162 160 162 190 L162 256" fill="#F7F3E9" />
-      <path d="M178 254 L178 200 Q178 178 200 178 L236 178 Q258 178 258 200 L258 252" fill="#F7F3E9" opacity="0.85" />
-      <rect x="72" y="190" width="66" height="66" rx="33" fill="#263B34" opacity="0.85" />
-      <rect x="196" y="204" width="44" height="48" rx="22" fill="#263B34" opacity="0.7" />
-      <rect x="0" y="318" width="300" height="82" fill="#9CAF79" opacity="0.5" />
-      <line x1="30" y1="345" x2="270" y2="345" stroke="#F7F3E9" strokeOpacity="0.5" />
-      <line x1="60" y1="365" x2="240" y2="365" stroke="#F7F3E9" strokeOpacity="0.35" />
+    <svg className={className} viewBox="0 0 36 36" aria-hidden>
+      <rect x="0.5" y="0.5" width="35" height="35" rx="8" fill="#EEF2E8" stroke="rgba(20,32,27,0.12)" />
+      {domain === "move" && <path d="M7 22c3-6 6-6 9 0s6 6 9 0 3-3 4-4" {...common} stroke={C.moss} />}
+      {domain === "eat" && (
+        <>
+          <circle cx="18" cy="18" r="9" {...common} stroke={C.clay} />
+          <path d="M14 20c1-4 4-6 8-6-1 4-4 6-8 6z" {...common} stroke={C.moss} />
+        </>
+      )}
+      {domain === "think" && (
+        <>
+          <path d="M11 12l7 5 7-5M18 17v8M11 12v10M25 12v10" {...common} />
+          {[
+            [11, 12],
+            [25, 12],
+            [18, 17],
+            [18, 25],
+            [11, 22],
+            [25, 22],
+          ].map(([x, y]) => (
+            <circle key={`${x}-${y}`} cx={x} cy={y} r="2" fill={C.forest} />
+          ))}
+        </>
+      )}
+      {domain === "risks" && <path d="M6 19h6l2-5 4 10 3-7 2 2h7" {...common} stroke={C.forest} />}
     </svg>
   );
 }
 
-function FoodArt() {
+/** Line-art stand-in for venue photography. */
+function VenueArt() {
   return (
-    <svg className="art" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="300" height="220" fill="#BF765A" />
-      <circle cx="80" cy="110" r="62" fill="#F7F3E9" />
-      <circle cx="80" cy="110" r="44" fill="#9CAF79" />
-      <circle cx="66" cy="98" r="14" fill="#506C50" />
-      <circle cx="96" cy="124" r="10" fill="#E5D5BC" />
-      <circle cx="205" cy="70" r="42" fill="#F7F3E9" />
-      <circle cx="205" cy="70" r="28" fill="#E5D5BC" />
-      <circle cx="232" cy="165" r="50" fill="#F7F3E9" />
-      <circle cx="232" cy="165" r="34" fill="#506C50" />
-      <circle cx="244" cy="156" r="11" fill="#9CAF79" />
+    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+      <defs>
+        <pattern id="venue-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0H0V40" fill="none" stroke="rgba(20,32,27,0.07)" />
+        </pattern>
+      </defs>
+      <rect width="600" height="340" fill="#EEF2E8" />
+      <rect width="600" height="340" fill="url(#venue-grid)" />
+      <circle cx="300" cy="210" r="70" fill="none" stroke={C.clay} strokeWidth="1.5" />
+      <circle cx="300" cy="210" r="110" fill="none" stroke={C.clay} strokeOpacity="0.35" strokeDasharray="2 6" />
+      <rect x="0" y="210" width="600" height="130" fill="#FBFBF8" fillOpacity="0.6" />
+      <line x1="0" y1="210" x2="600" y2="210" stroke={C.forest} strokeWidth="1.2" />
+      {[228, 246, 266, 290].map((y, i) => (
+        <line key={y} x1={300 - 60 + i * 14} y1={y} x2={300 + 60 - i * 14} y2={y} stroke={C.clay} strokeOpacity={0.7 - i * 0.14} strokeWidth="1.5" />
+      ))}
     </svg>
   );
 }
 
-function MoveArt() {
+export function Photo({ slot, sizes, className }: { slot: ImageSlot; sizes: string; className?: string }) {
   return (
-    <svg className="art" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="300" height="220" fill="#E5D5BC" />
-      <rect y="0" width="300" height="92" fill="#9CAF79" opacity="0.55" />
-      <path d="M0 150 C80 120 140 170 300 120 L300 220 L0 220 Z" fill="#F7F3E9" />
-      <path d="M-10 190 C70 150 160 200 310 150" fill="none" stroke="#263B34" strokeWidth="2" strokeDasharray="2 9" strokeLinecap="round" />
-      <circle cx="120" cy="168" r="9" fill="#263B34" />
-      <circle cx="148" cy="172" r="9" fill="#506C50" />
-      <circle cx="176" cy="170" r="9" fill="#BF765A" />
-      <circle cx="235" cy="52" r="24" fill="#BF765A" opacity="0.9" />
-    </svg>
-  );
-}
-
-const fallbacks = { place: PlaceArt, food: FoodArt, move: MoveArt, hero: HorizonArt } as const;
-
-export function Photo({
-  slot,
-  variant,
-  sizes,
-  className,
-  priority,
-}: {
-  slot: ImageSlot;
-  variant: keyof typeof fallbacks;
-  sizes: string;
-  className?: string;
-  priority?: boolean;
-}) {
-  const Fallback = fallbacks[variant];
-  return (
-    <figure className={`photo ${className ?? ""}`} style={{ margin: 0 }}>
+    <figure className={`photo ${className ?? ""}`}>
       {slot.src ? (
-        <Image src={slot.src} alt={slot.alt} fill sizes={sizes} priority={priority} />
+        <Image src={slot.src} alt={slot.alt} fill sizes={sizes} />
       ) : (
         <>
-          <Fallback />
-          {showNotes && <figcaption className="photo-note">Photo needed: {slot.needed}</figcaption>}
+          <VenueArt />
+          {showNotes && <figcaption className="photo-note mono">Photo needed: {slot.needed}</figcaption>}
         </>
       )}
     </figure>
-  );
-}
-
-/** Soko's connected-circles motif. */
-export function Circles({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 200 200" aria-hidden>
-      <circle cx="80" cy="80" r="56" fill="#506C50" />
-      <circle cx="126" cy="90" r="56" fill="#BF765A" opacity="0.92" />
-      <circle cx="102" cy="132" r="54" fill="#9CAF79" opacity="0.95" />
-      <circle cx="102" cy="112" r="17" fill="#F7F3E9" />
-    </svg>
   );
 }

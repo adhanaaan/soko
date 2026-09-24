@@ -12,16 +12,16 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", background: "#F7F3E9", color: "#263B34", fontFamily: "serif" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", background: "#FBFBF8", color: "#14201B", fontFamily: "sans-serif" }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "64px 72px", width: 720 }}>
-          <div style={{ fontSize: 22, letterSpacing: 4, color: "#506C50", fontFamily: "sans-serif", fontWeight: 700 }}>
+          <div style={{ fontSize: 20, letterSpacing: 3, color: "#47534D", fontFamily: "monospace" }}>
             {`${event.dates.eyebrow} · ${event.venue.short.toUpperCase()}`}
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 40, color: "#506C50" }}>{event.name}</div>
-            <div style={{ fontSize: 68, lineHeight: 1.05, marginTop: 12 }}>{hero.headline}</div>
+            <div style={{ fontSize: 70, lineHeight: 1.02, marginTop: 12, letterSpacing: -2 }}>{hero.headline}</div>
           </div>
-          <div style={{ fontSize: 20, color: "#4d5c55", fontFamily: "sans-serif" }}>
+          <div style={{ fontSize: 18, color: "#5D6964", fontFamily: "monospace", letterSpacing: 1 }}>
             {`Organised by ${partners.organiser.name} · ${partners.hospitality.name} · ${partners.brainHealth.name}`}
           </div>
         </div>

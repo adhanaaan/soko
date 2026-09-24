@@ -35,11 +35,18 @@ Python dict. Change a string, save, and the page updates.
 - **Pricing** stays hidden until `pricing.showPricing` is set to `true`. When
   hidden, the page says "Join the priority list for first access when bookings
   open". Prices never appear in metadata or the share image.
-- **Photos**: put approved images in `public/images/` and set `src` on the
-  matching entry in `images` (for example `src: "/images/hero.jpg"`). Until
-  then, a designed placeholder is shown.
+- **Programme detail**: each activity can carry a tag (`Private`, `Group`,
+  `Your choice`, `Where suitable`, `Free time`, `Take-home`), shown as small
+  labels on the page.
+- **Research facts** about the FINGER study live in `research`. They are cited
+  facts; keep them exact.
+- **Photos**: put an approved image in `public/images/` and set `src` on
+  `images.place` (for example `src: "/images/villa.jpg"`). Until then, a
+  line-art placeholder is shown.
 - **Colours and type** are CSS variables at the top of
-  [`src/app/globals.css`](src/app/globals.css).
+  [`src/app/globals.css`](src/app/globals.css). Visual direction: clean
+  near-white canvas, Geist + Geist Mono, hairline grids, Soko palette as ink
+  and accents.
 
 ## Deploying to Vercel
 
@@ -87,10 +94,8 @@ Assets and integrations still needed:
 - [ ] Contact email (currently the placeholder `hello@soko.example`)
 - [ ] Priority-list storage connected (docs/priority-list-setup.md)
 - [ ] Privacy notice reviewed (it's a draft; check against Singapore's PDPA)
-- [ ] Licensed photography, one per slot in `images`:
-      villa terrace at golden hour with sea horizon (hero); villa exterior or
-      pool; long table of plant-rich dishes; small group walking on the beach
-      in early morning
+- [ ] One licensed venue photo for `images.place` (villa terrace or pool at
+      golden hour, sea horizon)
 - [ ] Partner logos, only if supplied for use
 - [ ] Soko wordmark file (currently set in type)
 - [ ] Final domain, then set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ALLOW_INDEXING`

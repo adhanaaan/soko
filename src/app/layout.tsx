@@ -1,19 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { event, seo } from "@/content/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["opsz"],
-  style: ["normal", "italic"],
+  variable: "--font-geist",
   display: "swap",
 });
 
-const inter = Inter({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -64,12 +62,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F7F3E9",
+  themeColor: "#FBFBF8",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-SG" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en-SG" className={`${geist.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );

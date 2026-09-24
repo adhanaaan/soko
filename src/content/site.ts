@@ -24,6 +24,7 @@ export const event = {
     location: "Nongsa, Batam, Indonesia",
     travel: "A short ferry ride from Tanah Merah, Singapore, to Nongsapura",
   },
+  accommodation: "Shared two-bedroom villas (working basis)",
   groupSize: { min: 15, max: 20 },
   format: "Three days, two nights",
   followThroughDays: 20,
@@ -81,50 +82,75 @@ export const idea = {
   ],
 };
 
-export type Pillar = { key: string; title: string; summary: string; details: string[] };
+export type Tag = "Private" | "Group" | "Your choice" | "Where suitable" | "Free time" | "Take-home";
+export type Item = { label: string; tag?: Tag };
+export type Pillar = { key: string; code: string; title: string; domain: string; summary: string; details: Item[] };
+
+export const specs = [
+  { label: "Format", value: "3 days · 2 nights" },
+  { label: "Group", value: "15–20 guests" },
+  { label: "Domains", value: "4, research-informed" },
+  { label: "After", value: "20-day follow-through" },
+];
 
 export const science = {
   kicker: "The science becomes the schedule",
-  heading: "Four everyday domains, built into the weekend.",
+  heading: "Four domains of brain health, built into one weekend.",
   intro:
-    "Research into brain health points to several areas of daily life that work together. Clarity turns each of them into something you actually do.",
+    "Brain health research points to several areas of daily life that work together. Clarity turns each one into something you do, not something you're told.",
   pillars: [
     {
       key: "move",
+      code: "01",
       title: "Move",
-      summary: "Movement you'll want to repeat.",
-      details: ["Morning walks and mobility", "Pickleball, or an accessible alternative", "Options for every fitness level"],
+      domain: "Physical activity",
+      summary: "Movement you'll want to repeat at home.",
+      details: [
+        { label: "Morning walk and mobility", tag: "Group" },
+        { label: "Pickleball, or an accessible alternative", tag: "Your choice" },
+        { label: "Options for every fitness level" },
+      ],
     },
     {
       key: "eat",
+      code: "02",
       title: "Eat well",
+      domain: "Nutrition",
       summary: "Food that is generous, not restrictive.",
-      details: ["Chef-led, plant-rich menus", "Heart-healthy choices explained", "Shared tables, no calorie counting"],
+      details: [
+        { label: "Chef-led, plant-rich menus", tag: "Group" },
+        { label: "Heart-healthy choices, explained" },
+        { label: "Shared tables, no calorie counting" },
+      ],
     },
     {
       key: "think",
+      code: "03",
       title: "Think actively",
-      summary: "A private baseline and a good challenge.",
+      domain: "Cognitive activity",
+      summary: "A private baseline and a sociable challenge.",
       details: [
-        `Private ${partners.assessmentName} cognitive baseline`,
-        "Separate, sociable group cognitive challenges",
-        "Your results stay yours",
+        { label: `${partners.assessmentName} cognitive baseline`, tag: "Private" },
+        { label: "Group cognitive challenges", tag: "Group" },
+        { label: "Your results stay yours" },
       ],
     },
     {
       key: "risks",
+      code: "04",
       title: "Know your risks",
+      domain: "Vascular and metabolic health",
       summary: "Health context, guided by clinicians.",
       details: [
-        "Clinician-guided vascular and metabolic context",
-        "Continuous glucose monitoring (CGM) where suitable",
-        "Plain-language explanations, no alarm",
+        { label: "Clinician-guided vascular and metabolic context", tag: "Private" },
+        { label: "Continuous glucose monitoring (CGM)", tag: "Where suitable" },
+        { label: "Plain language, no alarm" },
       ],
     },
   ] satisfies Pillar[],
   thread: {
-    title: "Running through it all",
-    text: "Good company and proper rest. Shared meals, unhurried conversation, downtime and sleep are woven through every day — part of the experience, not a treatment.",
+    title: "Running through every day",
+    text: "Good company and proper rest. Shared meals, unhurried conversation, downtime and sleep are part of the experience, not a treatment.",
   },
   evidence: {
     text: "Inspired by multidomain brain health research, including the two-year FINGER trial. This retreat introduces practical habits; it does not replicate that intervention or promise a clinical outcome.",
@@ -133,50 +159,74 @@ export const science = {
   },
 };
 
-export type Day = { day: string; date: string; theme: string; summary: string; moments: string[] };
+/** Published facts about the reference study. Keep these exact; they are cited. */
+export const research = {
+  kicker: "Research basis",
+  heading: "Why several domains, not one.",
+  intro:
+    "The FINGER trial tested whether combining changes across several areas of life, rather than one at a time, could support cognition in older adults at increased risk of decline.",
+  study: {
+    name: "FINGER",
+    fullName: "Finnish Geriatric Intervention Study to Prevent Cognitive Impairment and Disability",
+    citation: "Ngandu et al., The Lancet, 2015",
+    facts: [
+      { label: "Design", value: "Randomised controlled trial" },
+      { label: "Participants", value: "1,260 adults aged 60–77 in Finland, at increased risk" },
+      { label: "Duration", value: "2 years" },
+      { label: "Domains", value: "Diet · Exercise · Cognitive training · Vascular risk monitoring" },
+    ],
+  },
+  takes: ["The four domains as a way to structure a weekend", "Doing the habits together, not just hearing about them", "A plan to continue at home"],
+  doesNot: ["Replicate the two-year intervention", "Promise to prevent dementia or improve cognition", "Diagnose or treat any condition"],
+};
+
+export type Day = { code: string; day: string; date: string; theme: string; summary: string; moments: Item[] };
 
 export const weekend = {
   kicker: "The weekend",
-  heading: "Three days, one arc.",
-  status: "Proposed programme · timings and sessions to be confirmed with partners",
+  heading: "Three days. Understand, experience, take it home.",
+  status: "Proposed programme · to be confirmed with partners",
   days: [
     {
+      code: "Day 01",
       day: "Friday",
       date: "20 Nov",
       theme: "Understand",
       summary: "Arrive, settle in and get a private picture of where you are.",
       moments: [
-        "Ferry from Singapore and a warm welcome at Montigo",
-        "Private cognitive baseline",
-        "CGM onboarding, where suitable",
-        "Shared dinner",
+        { label: "Ferry from Singapore, welcome at Montigo", tag: "Group" },
+        { label: "Cognitive baseline", tag: "Private" },
+        { label: "CGM onboarding", tag: "Where suitable" },
+        { label: "Shared dinner", tag: "Group" },
       ],
     },
     {
+      code: "Day 02",
       day: "Saturday",
       date: "21 Nov",
       theme: "Experience",
-      summary: "A full, unhurried day of doing — with plenty of time to yourself.",
+      summary: "A full, unhurried day of doing, with time to yourself.",
       moments: [
-        "Your choice of morning movement",
-        "Brain health session",
-        "Chef-led nutrition discussion",
-        "Social cognitive challenge",
-        "Personal downtime at the resort",
-        "Recovery session",
-        "Shared dinner",
+        { label: "Morning movement", tag: "Your choice" },
+        { label: "Brain health session", tag: "Group" },
+        { label: "Chef-led nutrition discussion", tag: "Group" },
+        { label: "Social cognitive challenge", tag: "Group" },
+        { label: "Downtime at the resort", tag: "Free time" },
+        { label: "Recovery session", tag: "Group" },
+        { label: "Shared dinner", tag: "Group" },
       ],
     },
     {
+      code: "Day 03",
       day: "Sunday",
       date: "22 Nov",
       theme: "Take it home",
       summary: "Make sense of it all and choose what comes next.",
       moments: [
-        "Gentle movement",
-        "Private interpretation of your insights",
-        "Choose two habits to keep",
-        "Depart with your 20-day plan",
+        { label: "Gentle movement", tag: "Group" },
+        { label: "Interpretation of your insights", tag: "Private" },
+        { label: "Choose two habits to keep", tag: "Private" },
+        { label: "Depart with your 20-day plan", tag: "Take-home" },
       ],
     },
   ] satisfies Day[],
@@ -184,22 +234,26 @@ export const weekend = {
 };
 
 export const insight = {
-  kicker: "Personal insight, handled with care",
-  heading: "Your information, explained in plain language.",
+  kicker: "Your data, handled with care",
+  heading: "Personal insight, explained in plain language.",
   items: [
     {
+      label: "Baseline",
       title: "A private baseline",
       text: `A short ${partners.assessmentName} cognitive assessment gives you a personal starting point. It is shared with you privately — never on a leaderboard, never with the group.`,
     },
     {
+      label: "Context",
       title: "Relevant health context",
       text: "Clinicians help you understand vascular and metabolic factors that matter for long-term brain health, and what is within your control.",
     },
     {
+      label: "CGM",
       title: "Glucose, in context",
       text: "Where CGM is suitable, readings are discussed in context. They do not diagnose disease, and one meal never makes a food good or bad.",
     },
     {
+      label: "Summary",
       title: "A practical take-home summary",
       text: "You leave with a short, readable summary and two habits you have chosen yourself — not a stack of numbers.",
     },
@@ -297,31 +351,17 @@ export const footer = {
 export type ImageSlot = { src: string | null; alt: string; needed: string };
 
 export const images = {
-  hero: {
-    src: null,
-    alt: "Morning light over the sea from a villa terrace at Montigo Resorts Nongsa",
-    needed: "Villa terrace at golden hour, sea horizon",
-  },
   place: {
     src: null,
-    alt: "A villa at Montigo Resorts Nongsa among tropical planting",
-    needed: "Villa exterior or pool, warm light",
-  },
-  food: {
-    src: null,
-    alt: "A shared table of plant-rich dishes",
-    needed: "Long table, plant-rich dishes, hands reaching in",
-  },
-  move: {
-    src: null,
-    alt: "Guests walking together along the shoreline",
-    needed: "Small group walking on the beach, early morning",
+    alt: "Morning light over the sea from a villa terrace at Montigo Resorts Nongsa",
+    needed: "Villa terrace or pool at golden hour, sea horizon",
   },
 } satisfies Record<string, ImageSlot>;
 
 export const nav = [
   { href: "#idea", label: "The idea" },
   { href: "#programme", label: "Programme" },
+  { href: "#research", label: "Research" },
   { href: "#weekend", label: "The weekend" },
   { href: "#faq", label: "FAQ" },
 ];
