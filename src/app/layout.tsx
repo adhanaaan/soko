@@ -17,10 +17,31 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
+/**
+ * Resolve the public site URL for share links. Tolerates the variable being
+ * empty, missing, or set without "https://" (e.g. "clarity.soko.sg"), and
+ * never fails the build: falls back to Vercel's URL, then localhost.
+ */
+function resolveSiteUrl(): URL {
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+  ];
+  for (const raw of candidates) {
+    const value = raw?.trim();
+    if (!value) continue;
+    try {
+      return new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`);
+    } catch {
+      console.warn(`[layout] Ignoring invalid site URL: "${value}"`);
+    }
+  }
+  return new URL("http://localhost:3000");
+}
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: resolveSiteUrl(),
   title: seo.title,
   description: seo.description,
   applicationName: event.name,
