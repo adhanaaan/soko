@@ -56,8 +56,9 @@ export const pricing = {
 
 export const cta = {
   primary: "Join the priority list",
+  short: "Join list",
   secondary: "See what you get",
-  note: "15–20 places · Dates and package subject to partner confirmation",
+  note: "20–22 Nov 2026 · Montigo Resorts Nongsa · Dates and package to be confirmed",
 } as const;
 
 export const seo = {
@@ -69,7 +70,7 @@ export const seo = {
 
 export const hero = {
   headline: "Know where your brain stands. *Leave with a plan.*",
-  lede: "One weekend at Montigo Resorts Nongsa. A private brain health baseline, expert guidance, and a 20-day plan built around two habits.",
+  lede: "A small-group brain health weekend, a short ferry from Singapore.",
 };
 
 export const audience = {

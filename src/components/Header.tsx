@@ -32,7 +32,10 @@ export function Header() {
           </ul>
         </nav>
         <a className="btn btn-small btn-accent" href="#priority-list">
-          {cta.primary}
+          <span className="cta-long">{cta.primary}</span>
+          <span className="cta-short" aria-hidden>
+            {cta.short}
+          </span>
         </a>
       </div>
     </header>

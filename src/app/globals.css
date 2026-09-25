@@ -2192,3 +2192,146 @@ h2 em {
 .day-track span {
   border-radius: 999px;
 }
+
+/* ---------------------------------------------------------------------------
+   Progressive disclosure: clear first screen, detail on demand (phones)
+   --------------------------------------------------------------------------- */
+.hero {
+  padding-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.hero-copy {
+  gap: 1.35rem;
+}
+
+.hero-lede {
+  max-width: 28rem;
+}
+
+.hero-note {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  max-width: 30rem;
+}
+
+.glance {
+  padding-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
+}
+
+.glance .specs {
+  margin-top: 0;
+}
+
+.cta-short {
+  display: none;
+}
+
+.expand-toggle {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  /* First screen: headline, one line, one button. */
+  .hero {
+    min-height: calc(100svh - 4rem);
+    display: flex;
+    align-items: center;
+    padding-block: 3rem 4rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 1.6rem + 5.5vw, 3.4rem);
+  }
+
+  .hero-visual,
+  .hero-secondary {
+    display: none;
+  }
+
+  .hero-actions {
+    margin-top: 0.75rem;
+  }
+
+  /* At a glance: four quiet rows, no sub-details. */
+  .glance .specs {
+    grid-template-columns: 1fr;
+  }
+
+  .glance .spec,
+  .glance .spec + .spec,
+  .glance .spec:nth-child(3),
+  .glance .spec:nth-child(n + 3) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.95rem 0;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .glance .spec dd {
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .glance .spec dd span,
+  .partner-line {
+    display: none;
+  }
+
+  /* Header: shorter call to action. */
+  .cta-long {
+    display: none;
+  }
+
+  .cta-short {
+    display: inline;
+  }
+
+  /* Lighter lists. */
+  .fit li {
+    font-size: var(--step-0);
+    padding: 0.6rem 0;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  /* Collapsible lists (only when JS is available). */
+  .js .expand:not(.is-open) .extra {
+    display: none;
+  }
+
+  .js .expand-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: transparent;
+    color: var(--ink);
+    font: 500 0.88rem/1.2 var(--font-sans);
+    cursor: pointer;
+  }
+
+  .js .expand.is-open .expand-chevron {
+    transform: rotate(180deg);
+  }
+
+  .expand-chevron {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  /* Domain cards collapse to title + summary; no divider when closed. */
+  .js .expand:not(.is-open) .domain ul,
+  .js .domain .expand:not(.is-open) ul {
+    border-top: 0;
+    padding-top: 0;
+  }
+}

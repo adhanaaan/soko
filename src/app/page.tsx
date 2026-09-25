@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DomainDiagram, DomainGlyph, Mark, MomentArt, Photo } from "@/components/Art";
+import { Expand } from "@/components/Expand";
 import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
@@ -73,57 +74,55 @@ function Index({ n, label }: { n: string; label: string }) {
 
 function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="wrap">
-        <div className="hero-grid">
+    <>
+      <section className="hero" id="top" aria-labelledby="hero-title">
+        <div className="wrap hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow mono">
-              <span className="dot" aria-hidden />
-              <span>{event.dates.eyebrow}</span>
-              <span aria-hidden>/</span>
-              <span>{event.venue.short.toUpperCase()}</span>
-            </p>
             <h1 id="hero-title">{rich(hero.headline)}</h1>
             <p className="hero-lede">{hero.lede}</p>
             <div className="hero-actions">
               <a className="btn btn-accent" href="#priority-list">
                 {cta.primary} <span className="arrow" aria-hidden>→</span>
               </a>
-              <a className="btn btn-ghost" href="#included">
+              <a className="btn btn-ghost hero-secondary" href="#included">
                 {cta.secondary}
               </a>
             </div>
-            <p className="hero-note mono">{cta.note}</p>
+            <p className="hero-note">{cta.note}</p>
           </div>
           <div className="hero-visual">
             <DomainDiagram pillars={science.pillars} />
           </div>
         </div>
+      </section>
 
-        <dl className="specs">
-          {specs.map((s) => (
-            <div className="spec" key={s.label}>
-              <dt className="mono">{s.label}</dt>
-              <dd>
-                {s.value}
-                <span>{s.detail}</span>
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <p className="partner-line">
-          <span>
-            {partners.organiser.role} <strong>{partners.organiser.name}</strong>
-          </span>
-          <span>
-            {partners.hospitality.role} <strong>{partners.hospitality.name}</strong>
-          </span>
-          <span>
-            {partners.brainHealth.role} <strong>{partners.brainHealth.name}</strong>
-          </span>
-        </p>
-      </div>
-    </section>
+      <section className="glance" aria-label="At a glance">
+        <div className="wrap">
+          <dl className="specs">
+            {specs.map((s) => (
+              <div className="spec" key={s.label}>
+                <dt className="mono">{s.label}</dt>
+                <dd>
+                  {s.value}
+                  <span>{s.detail}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="partner-line">
+            <span>
+              {partners.organiser.role} <strong>{partners.organiser.name}</strong>
+            </span>
+            <span>
+              {partners.hospitality.role} <strong>{partners.hospitality.name}</strong>
+            </span>
+            <span>
+              {partners.brainHealth.role} <strong>{partners.brainHealth.name}</strong>
+            </span>
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -183,14 +182,16 @@ function Programme() {
               <h3>{p.title}</h3>
               <p className="domain-domain mono">{p.domain}</p>
               <p className="domain-summary">{p.summary}</p>
+              <Expand more="See details" hidden={p.details.length}>
               <ul>
                 {p.details.map((d) => (
-                  <li key={d.label}>
+                  <li key={d.label} className="extra">
                     {d.tag && <TagChip tag={d.tag} />}
                     <span>{d.label}</span>
                   </li>
                 ))}
               </ul>
+              </Expand>
             </li>
           ))}
         </ul>
@@ -301,14 +302,16 @@ function Weekend() {
               </div>
               <h3>{d.theme}</h3>
               <p className="day-summary">{d.summary}</p>
-              <ol>
-                {d.moments.map((m) => (
-                  <li key={m.label}>
-                    <span>{m.label}</span>
-                    {m.tag && <TagChip tag={m.tag} />}
-                  </li>
-                ))}
-              </ol>
+              <Expand more={`See all ${d.moments.length} sessions`} hidden={d.moments.length - 3}>
+                <ol>
+                  {d.moments.map((m, j) => (
+                    <li key={m.label} className={j >= 3 ? "extra" : undefined}>
+                      <span>{m.label}</span>
+                      {m.tag && <TagChip tag={m.tag} />}
+                    </li>
+                  ))}
+                </ol>
+              </Expand>
             </li>
           ))}
         </ol>
@@ -337,9 +340,10 @@ function Included() {
                 <b>{String(i + 1).padStart(2, "0")}</b> {ph.when}
               </p>
               <h3>{ph.title}</h3>
+              <Expand more={`See all ${ph.items.length}`} hidden={ph.items.length - 3}>
               <ul>
-                {ph.items.map((it) => (
-                  <li key={it.label}>
+                {ph.items.map((it, j) => (
+                  <li key={it.label} className={j >= 3 ? "extra" : undefined}>
                     <span className="check-mark" aria-hidden>
                       ✓
                     </span>
@@ -348,6 +352,7 @@ function Included() {
                   </li>
                 ))}
               </ul>
+              </Expand>
             </li>
           ))}
         </ol>

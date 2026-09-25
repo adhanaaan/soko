@@ -75,7 +75,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-SG" className={`${geist.variable} ${geistMono.variable} ${serif.variable}`}>
+    <html lang="en-SG" className={`${geist.variable} ${geistMono.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available so collapsed lists can hide on phones; without JS everything stays visible. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>{children}</body>
     </html>
   );
