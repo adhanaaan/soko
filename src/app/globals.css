@@ -2701,3 +2701,165 @@ h2 em {
     margin-top: 0.25rem;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Placeholders: visible on purpose until real details replace them
+   --------------------------------------------------------------------------- */
+.ph {
+  background: rgb(191 118 90 / 0.14);
+  color: var(--clay-ink);
+  border-radius: 4px;
+  padding: 0 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.dark .ph {
+  background: rgb(229 213 188 / 0.2);
+  color: var(--oat);
+}
+
+.for-who {
+  margin-top: 1.25rem;
+  color: var(--ink-2);
+  font-size: var(--step-1);
+  max-width: 26rem;
+}
+
+.title-tight {
+  margin-bottom: 0.75rem;
+}
+
+.timing {
+  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  color: var(--ink-2);
+  font-size: var(--step-1);
+}
+
+/* Guides */
+.guides {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.guides li {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.guide-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.9rem;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--warm), var(--tint));
+  border: 1px dashed var(--line-2);
+  display: grid;
+  place-items: center;
+}
+
+.guide-photo span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 3rem;
+  color: var(--ink-3);
+}
+
+.guide-photo small {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  color: var(--ink-3);
+}
+
+.guides h3 {
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+}
+
+.guide-role {
+  color: var(--moss-deep);
+  font-size: 0.9rem;
+}
+
+.guide-bio {
+  color: var(--ink-2);
+  font-size: 0.93rem;
+}
+
+/* Measures */
+.measures {
+  border-top: 1px solid var(--line-2);
+}
+
+.measures li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.measures h3 {
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+}
+
+.measures p {
+  margin-top: 0.25rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.measures .tag::before {
+  display: none;
+}
+
+.corporate {
+  font-size: 0.92rem;
+}
+
+.corporate a {
+  color: inherit;
+}
+
+@media (max-width: 860px) {
+  .guides {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .guide-photo span {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .guides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.75rem;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .guides li {
+    flex: 0 0 72%;
+    scroll-snap-align: start;
+  }
+  .measures li {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.split > div > h2 {
+  font-size: var(--step-4);
+}
+
+.guide-photo {
+  aspect-ratio: 1 / 1;
+}

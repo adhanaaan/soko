@@ -80,6 +80,13 @@ docs/                        priority-list setup + Google Apps Script
 
 ## Before launch
 
+**Placeholders:** any text in `[square brackets]` in `src/content/site.ts`
+shows highlighted on the live page. Search the file for `[` and replace each
+one: clinician names, titles, bios and photos (`guides`), what each
+assessment measures (`measures`), ferry times (`weekend.timing`), villa
+pairing (FAQ) and the group-booking line (`signup.corporate`).
+
+
 Content awaiting confirmation (all in `src/content/site.ts`):
 
 - [ ] Dates 20–22 Nov 2026 confirmed by all partners (`event.dates.confirmed`)

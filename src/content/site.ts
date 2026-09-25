@@ -74,6 +74,7 @@ export const hero = {
 
 export const problem = {
   heading: "Sharp mind. *Foggy afternoons?*",
+  forWho: "For founders, leaders and senior professionals who want to stay sharp.",
   points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "You want to stay sharp for decades"],
 };
 
@@ -100,8 +101,32 @@ export const areas: Pillar[] = [
   { key: "risks", code: "04", finger: "Heart health", title: "Know your risks", what: "Clinician-guided vascular and metabolic context, with CGM where suitable." },
 ];
 
+/**
+ * PLACEHOLDERS: anything in [square brackets] renders highlighted on the page
+ * until it is replaced with confirmed, approved details.
+ */
+export const guides = {
+  heading: "Who's guiding you.",
+  people: [
+    { initials: "GM", name: "[Lead clinician name]", role: "[Title] · Gray Matter Solutions", bio: "[Credentials and one line on their brain health work]", photo: null as string | null },
+    { initials: "GM", name: "[Brain health specialist name]", role: "[Title] · Gray Matter Solutions", bio: "[Credentials and one line on their role at Clarity]", photo: null as string | null },
+    { initials: "S", name: "[Host name]", role: "[Title] · Soko", bio: "[One line on hosting the weekend and the 20 days after]", photo: null as string | null },
+  ],
+};
+
+export const measures = {
+  heading: "What we measure.",
+  items: [
+    { name: `${partners.assessmentName} cognitive baseline`, what: "[What it assesses, in Gray Matter Solutions' words]", tag: "Private" },
+    { name: "Continuous glucose monitoring", what: "How your glucose responds to real meals over the weekend.", tag: "Where suitable" },
+    { name: "Vascular health", what: "[Checks to confirm, e.g. blood pressure]", tag: "Clinician-guided" },
+    { name: "Metabolic health", what: "[Checks to confirm]", tag: "Clinician-guided" },
+  ],
+};
+
 export const weekend = {
   heading: "Three days.",
+  timing: "Leave Friday [2pm]. Back in Singapore Sunday [afternoon].",
   days: [
     {
       day: "Fri",
@@ -150,12 +175,13 @@ export const faq = [
   { q: "My brain fog is new or severe.", a: "See your doctor first. Brain fog has many causes." },
   { q: "Do I need to be fit?", a: "No. Every session has an easy option." },
   { q: "Is my data private?", a: "Yes. Your results are shared with you, never the group." },
-  { q: "Where do I stay?", a: "A shared two-bedroom villa, two guests per villa." },
+  { q: "Where do I stay?", a: "A shared two-bedroom villa. [Bring a partner, friend or colleague to share with.]" },
   { q: "Are dates and price set?", a: "Not yet. The priority list hears first. Joining is free and doesn't reserve a place." },
 ];
 
 export const signup = {
   heading: "Get first access.",
+  corporate: "Bringing your leadership team? [Email us about group bookings.]",
   text: "Free. No commitment.",
   disclaimer: "Joining doesn't reserve a place.",
   consent: "I agree that Soko may store my name and email to contact me about Clarity. I can ask to be removed at any time.",

@@ -9,6 +9,8 @@ import {
   event,
   faq,
   footer,
+  guides,
+  measures,
   hero,
   moments,
   offer,
@@ -30,8 +32,10 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Science />
+        <Guides />
         <Problem />
         <Offer />
+        <Measures />
         <Weekend />
         <Moments />
         <Faq />
@@ -44,7 +48,17 @@ export default function Home() {
 
 /** Renders *emphasis* in content strings as a soft serif accent. */
 function rich(text: string) {
-  return text.split(/\*(.+?)\*/g).map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part));
+  // *emphasis* -> serif accent; [placeholder] -> highlighted until replaced
+  return text.split(/(\*.+?\*|\[.+?\])/g).map((part, i) => {
+    if (part.startsWith("*") && part.endsWith("*")) return <em key={i}>{part.slice(1, -1)}</em>;
+    if (part.startsWith("[") && part.endsWith("]"))
+      return (
+        <span key={i} className="ph" title="Placeholder: replace before launch">
+          {part}
+        </span>
+      );
+    return part;
+  });
 }
 
 function Hero() {
@@ -77,7 +91,10 @@ function Problem() {
   return (
     <section className="section" id="audience" aria-labelledby="problem-title">
       <div className="wrap split">
-        <h2 id="problem-title">{rich(problem.heading)}</h2>
+        <div>
+          <h2 id="problem-title">{rich(problem.heading)}</h2>
+          <p className="for-who">{problem.forWho}</p>
+        </div>
         <ul className="ticks">
           {problem.points.map((t) => (
             <li key={t}>{t}</li>
@@ -114,9 +131,10 @@ function Weekend() {
   return (
     <section className="section" id="weekend" aria-labelledby="weekend-title">
       <div className="wrap">
-        <h2 className="title" id="weekend-title">
+        <h2 className="title title-tight" id="weekend-title">
           {weekend.heading}
         </h2>
+        <p className="timing">{rich(weekend.timing)}</p>
         <ol className="days3">
           {weekend.days.map((d) => (
             <li key={d.day}>
@@ -217,6 +235,52 @@ function Science() {
   );
 }
 
+function Guides() {
+  return (
+    <section className="section" id="guides" aria-labelledby="guides-title">
+      <div className="wrap">
+        <h2 className="title" id="guides-title">
+          {guides.heading}
+        </h2>
+        <ul className="guides">
+          {guides.people.map((g, i) => (
+            <li key={i}>
+              <div className="guide-photo" aria-hidden>
+                <span>{g.initials}</span>
+                <small className="mono">Photo</small>
+              </div>
+              <h3>{rich(g.name)}</h3>
+              <p className="guide-role">{rich(g.role)}</p>
+              <p className="guide-bio">{rich(g.bio)}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Measures() {
+  return (
+    <section className="section" id="measures" aria-labelledby="measures-title">
+      <div className="wrap split">
+        <h2 id="measures-title">{measures.heading}</h2>
+        <ul className="measures">
+          {measures.items.map((m) => (
+            <li key={m.name}>
+              <div>
+                <h3>{m.name}</h3>
+                <p>{rich(m.what)}</p>
+              </div>
+              <span className="tag">{m.tag}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function Faq() {
   return (
     <section className="section" id="faq" aria-labelledby="faq-title">
@@ -229,7 +293,7 @@ function Faq() {
                 {item.q}
                 <span className="faq-icon" aria-hidden />
               </summary>
-              <p className="faq-answer">{item.a}</p>
+              <p className="faq-answer">{rich(item.a)}</p>
             </details>
           ))}
         </div>
@@ -266,6 +330,9 @@ function Signup() {
           <p>{signup.text}</p>
           <Pricing />
           <p className="small">{signup.disclaimer}</p>
+          <p className="corporate">
+            <a href={`mailto:${contact.email}?subject=Clarity%20group%20booking`}>{rich(signup.corporate)}</a>
+          </p>
         </div>
         <SignupForm />
       </div>
