@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mark, MomentArt } from "@/components/Art";
-import { AreaScene, HeroScene } from "@/components/Scenes";
+import { AreaScene, HeroScene, VillaScene } from "@/components/Scenes";
 import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
@@ -21,6 +21,7 @@ import {
   moments,
   offer,
   partners,
+  place,
   pricing,
   problem,
   science,
@@ -40,6 +41,7 @@ export default function Home() {
         <Problem />
         <Method />
         <Moments />
+        <Place />
         <Offer />
         <Weekend />
         <Science />
@@ -285,6 +287,37 @@ function Moments() {
             </li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+function Place() {
+  return (
+    <section className="section place-section" id="place" aria-labelledby="place-title">
+      <div className="wrap">
+        <div className="place-frame">
+          {images.place.src ? (
+            <Image className="scene" src={images.place.src} alt={images.place.alt} fill sizes="100vw" />
+          ) : (
+            <VillaScene />
+          )}
+          <p className="place-credit">{place.credit}</p>
+        </div>
+        <div className="place-body">
+          <div>
+            <h2 id="place-title">{rich(place.heading)}</h2>
+            <p className="timing">{place.lede}</p>
+          </div>
+          <dl className="place-facts">
+            {place.facts.map((f) => (
+              <div key={f.value}>
+                <dt>{f.value}</dt>
+                <dd>{rich(f.label)}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
     </section>
   );

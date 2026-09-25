@@ -120,3 +120,78 @@ export function AreaScene({ area }: { area: string }) {
     </svg>
   );
 }
+
+/** Daylight at Montigo Nongsa: whitewashed villas, timber deck, pool and sea. */
+export function VillaScene() {
+  return (
+    <svg className="scene" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <defs>
+        <linearGradient id="vs-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#CFDDE0" />
+          <stop offset="1" stopColor="#F4F1EA" />
+        </linearGradient>
+        <linearGradient id="vs-sea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#8FB2B4" />
+          <stop offset="1" stopColor="#5F8C8F" />
+        </linearGradient>
+        <linearGradient id="vs-pool" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#A9D2D0" />
+          <stop offset="1" stopColor="#6FAAAA" />
+        </linearGradient>
+        <linearGradient id="vs-wall" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#FFFFFF" />
+          <stop offset="1" stopColor="#ECE8E0" />
+        </linearGradient>
+        <filter id="vs-blur" x="-20%" y="-50%" width="140%" height="200%">
+          <feGaussianBlur stdDeviation="18" />
+        </filter>
+        <Grain id="vs-grain" opacity={0.07} />
+      </defs>
+      <rect width="1600" height="800" fill="url(#vs-sky)" />
+      <g filter="url(#vs-blur)" opacity="0.7">
+        <ellipse cx="380" cy="170" rx="300" ry="30" fill="#FFFFFF" />
+        <ellipse cx="1180" cy="120" rx="260" ry="24" fill="#FFFFFF" />
+      </g>
+      {/* sea */}
+      <rect y="360" width="1600" height="440" fill="url(#vs-sea)" />
+      <rect y="358" width="1600" height="3" fill="#F7F3E9" opacity="0.7" />
+      <g stroke="#F7F3E9" strokeOpacity="0.25" strokeWidth="2" strokeLinecap="round">
+        <line x1="120" y1="400" x2="420" y2="400" />
+        <line x1="620" y1="430" x2="980" y2="430" />
+        <line x1="1200" y1="395" x2="1480" y2="395" />
+      </g>
+      {/* whitewashed villas, stepping down the hill on the right */}
+      <g>
+        <rect x="1010" y="250" width="300" height="190" fill="url(#vs-wall)" />
+        <rect x="1010" y="236" width="316" height="16" fill="#FFFFFF" />
+        <rect x="1050" y="300" width="110" height="100" fill="#3E4F4B" opacity="0.55" />
+        <rect x="1180" y="300" width="90" height="100" fill="#3E4F4B" opacity="0.4" />
+        <rect x="1290" y="330" width="330" height="170" fill="url(#vs-wall)" />
+        <rect x="1280" y="316" width="340" height="16" fill="#FFFFFF" />
+        <rect x="1330" y="380" width="140" height="95" fill="#3E4F4B" opacity="0.5" />
+        <rect x="1490" y="380" width="110" height="95" fill="#3E4F4B" opacity="0.35" />
+      </g>
+      {/* timber deck and private pool */}
+      <path d="M0 560 L1600 520 L1600 800 L0 800 Z" fill="#C9A27E" />
+      <g stroke="#A9825F" strokeOpacity="0.5" strokeWidth="2">
+        {Array.from({ length: 9 }, (_, i) => (
+          <line key={i} x1="0" y1={590 + i * 26} x2="1600" y2={550 + i * 28} />
+        ))}
+      </g>
+      <path d="M220 610 L1080 588 L1120 740 L180 770 Z" fill="url(#vs-pool)" />
+      <path d="M220 610 L1080 588 L1084 600 L222 622 Z" fill="#FFFFFF" opacity="0.7" />
+      <g stroke="#FFFFFF" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round">
+        <path d="M320 660 q40 -8 80 0 t80 0" fill="none" />
+        <path d="M640 700 q40 -8 80 0 t80 0" fill="none" />
+      </g>
+      {/* lounger */}
+      <g transform="translate(1250 600)">
+        <rect x="0" y="40" width="220" height="18" rx="6" fill="#F7F3E9" />
+        <path d="M150 40 L215 0 L225 14 L170 44 Z" fill="#F7F3E9" />
+        <rect x="14" y="58" width="8" height="30" fill="#8C6A4E" />
+        <rect x="196" y="58" width="8" height="30" fill="#8C6A4E" />
+      </g>
+      <rect width="1600" height="800" filter="url(#vs-grain)" />
+    </svg>
+  );
+}

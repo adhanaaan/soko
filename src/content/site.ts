@@ -68,11 +68,11 @@ export const seo = {
 
 export const hero = {
   headline: "Brain clarity, *in one weekend.*",
-  lede: "A clinically led retreat by the sea, a short ferry from Singapore. Measure your brain health. Understand it with a clinician. Leave with a clear head and a clear plan.",
+  lede: "Two nights at Montigo Resorts Nongsa, 30 minutes by ferry from Singapore. Measure your brain health, understand it with a clinician, and leave with a clear head and a clear plan.",
   badge: "Clinically led retreat · 20–22 Nov 2026",
   stats: [
     { value: "Clinically led", label: "by Dr. Stephen Tong" },
-    { value: "2 nights", label: "at Montigo Resorts Nongsa" },
+    { value: "30 min", label: "by ferry from Singapore" },
     { value: "15–20", label: "guests only" },
   ],
 };
@@ -236,6 +236,19 @@ export const weekend = {
   note: "Proposed programme",
 };
 
+/** The venue, described in Montigo's own terms: whitewashed villas, private seafront, close to Singapore. */
+export const place = {
+  heading: "Montigo Resorts Nongsa. *30 minutes from Singapore.*",
+  lede: "Whitewashed villas on a kilometre of private seafront, facing the South China Sea.",
+  facts: [
+    { value: "30 min", label: "Ferry from Tanah Merah to Nongsapura" },
+    { value: "1 km", label: "Private seafront" },
+    { value: "2-bed", label: "Sea-view villa, [private pool to confirm]" },
+    { value: "All in", label: "Meals, sessions and downtime on site" },
+  ],
+  credit: "Hosted by Montigo Resorts",
+};
+
 export const moments = {
   heading: "Slow down. On purpose.",
   items: [
@@ -295,6 +308,7 @@ export const images = {
 
 export const nav = [
   { href: "#method", label: "How it works" },
+  { href: "#place", label: "The place" },
   { href: "#offer", label: "What you get" },
   { href: "#science", label: "The science" },
   { href: "#faq", label: "FAQ" },

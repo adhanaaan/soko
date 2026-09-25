@@ -45,6 +45,10 @@ export function SignupForm() {
       email: String(form.get("email") ?? ""),
       consent: form.get("consent") === "on",
       company: String(form.get("company") ?? ""),
+      // Which ad or link brought them here (utm_* tags on the landing URL).
+      utm: Object.fromEntries(
+        [...new URLSearchParams(window.location.search)].filter(([k]) => k.startsWith("utm_")).slice(0, 5),
+      ),
     };
 
     const clientErrors = validate(data);

@@ -35,7 +35,7 @@ Python dict. Change a string, save, and the page updates.
 - **Pricing** stays hidden until `pricing.showPricing` is set to `true`. When
   hidden, the page says "Join the priority list for first access when bookings
   open". Prices never appear in metadata or the share image.
-- **Page sections** (in order): `hero`, `problem`, `method` (the three clinical steps and Dr. Tong's quote), `moments`, `offer`, `weekend`
+- **Page sections** (in order): `hero`, `problem`, `method` (the three clinical steps and Dr. Tong's quote), `moments`, `place` (Montigo), `offer`, `weekend`
   (the full session list sits behind "See the full schedule"),
   `science`, `faq`, `signup`. Keep each one short: one idea per section.
 - **Evidence boundary**: `science.note` must stay visible wherever the
@@ -49,6 +49,12 @@ Python dict. Change a string, save, and the page updates.
   Mono for structure, Instrument Serif italic for one accent phrase per
   heading (wrap it in `*asterisks*` in the content file), pill-shaped
   buttons and tags, Soko palette as ink and accents.
+
+## Ad tracking
+
+Any `utm_*` tags on the landing link (for example
+`?utm_source=meta&utm_campaign=clarity-nov`) are saved with each sign-up in the
+Source column, so you can see which ad or link brought each person in.
 
 ## Deploying to Vercel
 
@@ -100,6 +106,7 @@ Content awaiting confirmation (all in `src/content/site.ts`):
 - [ ] The 20-day follow-through: delivery channel (`after.channelNote`)
 - [ ] Partner approval of how Montigo and Gray Matter Solutions are described
 - [ ] Assessment name spelling: ReCOGnAIze
+- [ ] "30 minutes from Singapore" (Montigo's own ad claim) and the villa private pool (`place`)
 
 Assets and integrations still needed:
 

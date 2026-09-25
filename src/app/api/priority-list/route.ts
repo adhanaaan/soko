@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import { storeLead, validateLead } from "@/lib/priority-list";
 
+/** Appends utm_* tags (from the ad link) to the source, e.g. "clarity-website | utm_source=meta". */
+function withAttribution(source: string, utm: unknown): string {
+  if (!utm || typeof utm !== "object") return source;
+  const tags = Object.entries(utm as Record<string, unknown>)
+    .filter(([k, v]) => /^utm_[a-z]{1,20}$/.test(k) && typeof v === "string" && v.trim() !== "")
+    .slice(0, 5)
+    .map(([k, v]) => `${k}=${String(v).trim().slice(0, 100)}`);
+  return tags.length ? `${source} | ${tags.join("; ")}` : source;
+}
+
 export async function POST(request: Request) {
   let body: unknown;
   try {
@@ -26,7 +36,7 @@ export async function POST(request: Request) {
     email: result.email,
     consent: true,
     submittedAt: new Date().toISOString(),
-    source: "clarity-website",
+    source: withAttribution("clarity-website", (body as Record<string, unknown>).utm),
   });
 
   if (!stored.ok) {

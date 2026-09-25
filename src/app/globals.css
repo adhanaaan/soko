@@ -3505,3 +3505,93 @@ h2 em {
     padding-top: 5.25rem;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   The place: Montigo's register. Whitewashed, daylight, sea, timber.
+   --------------------------------------------------------------------------- */
+.place-section {
+  --sea: #5f8c8f;
+}
+
+.place-frame {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #e9eeec;
+}
+
+.place-frame .scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.place-credit {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.place-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  margin-top: clamp(1.75rem, 1.25rem + 2vw, 3rem);
+  align-items: start;
+}
+
+.place-body h2 {
+  font-size: var(--step-3);
+  margin: 0 0 0.75rem;
+}
+
+.place-body h2 em {
+  color: var(--sea);
+}
+
+.place-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.place-facts > div {
+  padding: 1rem 0.5rem 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.place-facts dt {
+  font-size: var(--step-2);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.place-facts dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+@media (max-width: 760px) {
+  .place-frame {
+    aspect-ratio: 4 / 3;
+  }
+  .place-body {
+    grid-template-columns: 1fr;
+  }
+}
