@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { DomainDiagram, Mark, MomentArt } from "@/components/Art";
 import { Header } from "@/components/Header";
@@ -267,9 +268,12 @@ function Guides() {
         <ul className="guides">
           {guides.people.map((g, i) => (
             <li key={i}>
-              <div className="guide-photo" aria-hidden>
-                <span>{g.initials}</span>
-                <small className="mono">Photo</small>
+              <div className="guide-photo">
+                {g.photo ? (
+                  <Image src={g.photo} alt={`Portrait of ${g.name}`} fill sizes="(max-width: 560px) 72vw, 33vw" />
+                ) : (
+                  <span aria-hidden>{g.initials}</span>
+                )}
               </div>
               <h3>{rich(g.name)}</h3>
               <p className="guide-role">{rich(g.role)}</p>

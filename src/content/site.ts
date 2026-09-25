@@ -117,9 +117,9 @@ export const areas: Pillar[] = [
 export const guides = {
   heading: "Who's guiding you.",
   people: [
-    { initials: "GM", name: "[Lead clinician name]", role: "[Title] · Gray Matter Solutions", bio: "[Credentials and one line on their brain health work]", photo: null as string | null },
-    { initials: "GM", name: "[Brain health specialist name]", role: "[Title] · Gray Matter Solutions", bio: "[Credentials and one line on their role at Clarity]", photo: null as string | null },
-    { initials: "S", name: "[Host name]", role: "[Title] · Soko", bio: "[One line on hosting the weekend and the 20 days after]", photo: null as string | null },
+    { initials: "ST", name: "Dr. Stephen Tong", role: "Clinical Lead", bio: "[Credentials and one line on his clinical work]", photo: null as string | null },
+    { initials: "AA", name: "Adnan Azam Mohammed", role: "Brain Health Expert", bio: "[Credentials and one line on his brain health work]", photo: null as string | null },
+    { initials: "AP", name: "Ann Phun", role: "Mindfulness Expert", bio: "[Credentials and one line on her mindfulness practice]", photo: null as string | null },
   ],
 };
 

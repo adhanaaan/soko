@@ -3000,3 +3000,11 @@ h2 em {
     display: none;
   }
 }
+
+.guide-photo {
+  overflow: hidden;
+}
+
+.guide-photo img {
+  object-fit: cover;
+}
