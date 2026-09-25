@@ -112,15 +112,37 @@ function Offer() {
         <h2 className="title" id="offer-title">
           {offer.heading}
         </h2>
-        <ol className="offer">
-          {offer.items.map((o) => (
-            <li key={o.n}>
-              <span className="mono">{o.n}</span>
-              <h3>{o.title}</h3>
-              <p>{o.text}</p>
+        <ol className="stack">
+          {offer.stack.map((o) => (
+            <li key={o.name} className={"bonus" in o && o.bonus ? "is-bonus" : undefined}>
+              <div>
+                <h3>{o.name}</h3>
+                <p>{o.text}</p>
+              </div>
+              <span className="stack-inc mono">{"bonus" in o && o.bonus ? "Bonus" : "Included"}</span>
             </li>
           ))}
         </ol>
+        <ul className="promises">
+          {offer.promises.map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+        <div className="guarantee">
+          <span className="guarantee-seal" aria-hidden>
+            ✓
+          </span>
+          <div>
+            <h3>{offer.guarantee.title}</h3>
+            <p>{rich(offer.guarantee.text)}</p>
+          </div>
+        </div>
+        <div className="offer-cta">
+          <a className="btn btn-accent" href="#priority-list">
+            {cta.primary} <span className="arrow" aria-hidden>→</span>
+          </a>
+          <p>{rich(offer.scarcity)}</p>
+        </div>
         <p className="fine">{offer.note}</p>
       </div>
     </section>

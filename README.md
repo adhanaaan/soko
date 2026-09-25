@@ -84,7 +84,8 @@ docs/                        priority-list setup + Google Apps Script
 shows highlighted on the live page. Search the file for `[` and replace each
 one: clinician names, titles, bios and photos (`guides`), what each
 assessment measures (`measures`), ferry times (`weekend.timing`), villa
-pairing (FAQ) and the group-booking line (`signup.corporate`).
+pairing (FAQ), the group-booking line (`signup.corporate`), the guarantee
+(`offer.guarantee`) and the bookings-open date (`offer.scarcity`).
 
 
 Content awaiting confirmation (all in `src/content/site.ts`):

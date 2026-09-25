@@ -68,7 +68,7 @@ export const seo = {
 
 export const hero = {
   headline: "Know where your brain stands. *Leave with a plan.*",
-  lede: "A brain health weekend built on the four areas of the FINGER trial. 15–20 people. A short ferry from Singapore.",
+  lede: "A brain health weekend built on the FINGER trial. Results before you leave. 15–20 places, a short ferry from Singapore.",
   badge: "Based on the FINGER trial",
 };
 
@@ -78,13 +78,22 @@ export const problem = {
   points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "You want to stay sharp for decades"],
 };
 
+/** The offer stack: every component named, plus a bonus, a guarantee and a real deadline. */
 export const offer = {
-  heading: "What you get.",
-  items: [
-    { n: "01", title: "Your baseline", text: `A private ${partners.assessmentName} brain health check.` },
-    { n: "02", title: "Your weekend", text: "Two nights at Montigo, practising all four FINGER areas." },
-    { n: "03", title: "Your plan", text: "Two habits. 20 days of support at home." },
+  heading: "Everything you get.",
+  stack: [
+    { name: "The Clarity Baseline", text: `Your private ${partners.assessmentName} brain health check, plus clinician-guided heart and metabolic context.` },
+    { name: "The FINGER Weekend", text: "Two nights at Montigo. Meals, movement and sessions across all four FINGER areas." },
+    { name: "Your Results, Explained", text: "One-to-one, before you leave on Sunday." },
+    { name: "The 20-Day Plan", text: "Two habits you choose, short prompts and two group check-ins." },
+    { name: "A Soko session in Singapore", text: "Keep the momentum going with the group back home.", bonus: true },
   ],
+  promises: ["Results before you leave", "No fitness level needed", "Villa, meals and programme arranged"],
+  guarantee: {
+    title: "Our promise",
+    text: "[Guarantee to decide, e.g. full refund if you cancel 30+ days before, or if you don't leave with a clear plan.]",
+  },
+  scarcity: "15–20 places only · Bookings open [date]",
   note: "Proposed package. Final details before bookings open.",
 };
 
