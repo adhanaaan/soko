@@ -38,7 +38,7 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
       </desc>
 
       {/* scale ring */}
-      <g stroke={C.ink3} strokeOpacity="0.45">
+      <g stroke={C.ink3} strokeOpacity="0.22">
         {ticks.map((deg) => {
           const long = deg % 45 === 0;
           const r1 = long ? 222 : 228;
@@ -56,6 +56,14 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
         })}
       </g>
 
+      <defs>
+        <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#E9C9AE" stopOpacity="0.55" />
+          <stop offset="0.6" stopColor="#EEF2E8" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#FBFAF6" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="250" cy="250" r="200" fill="url(#halo)" />
       <circle cx="250" cy="250" r="175" fill="none" stroke={C.line} />
       <circle cx="250" cy="250" r="100" fill="none" stroke={C.line} strokeDasharray="2 5" />
       <line x1="250" y1="40" x2="250" y2="460" stroke={C.line} />
@@ -169,5 +177,96 @@ export function Photo({ slot, sizes, className }: { slot: ImageSlot; sizes: stri
         </>
       )}
     </figure>
+  );
+}
+
+const tones: Record<string, { bg: [string, string]; ink: string; soft: string }> = {
+  dawn: { bg: ["#F7E7D7", "#EBC7A8"], ink: "#BF765A", soft: "#F2D2B6" },
+  clay: { bg: ["#F6E4D8", "#E7B79D"], ink: "#9E5A40", soft: "#FBF1E8" },
+  leaf: { bg: ["#EEF2E6", "#CFDBBB"], ink: "#506C50", soft: "#9CAF79" },
+  dusk: { bg: ["#ECE8F0", "#D6DCE6"], ink: "#263B34", soft: "#BF765A" },
+};
+
+/** Soft, warm stand-in for people photography, one small scene per moment. */
+export function MomentArt({ tone, src, alt }: { tone: string; src: string | null; alt: string }) {
+  if (src) {
+    return (
+      <div className="moment-media">
+        <Image src={src} alt={alt} fill sizes="(max-width: 700px) 50vw, 25vw" />
+      </div>
+    );
+  }
+  const t = tones[tone] ?? tones.dawn;
+  const id = `m-${tone}`;
+  return (
+    <div className="moment-media" aria-hidden>
+      <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id={`${id}-bg`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor={t.bg[0]} />
+            <stop offset="1" stopColor={t.bg[1]} />
+          </linearGradient>
+          <radialGradient id={`${id}-glow`} cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.85" />
+            <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <rect width="300" height="400" fill={`url(#${id}-bg)`} />
+        <circle cx="150" cy="150" r="150" fill={`url(#${id}-glow)`} />
+
+        {tone === "dawn" && (
+          <>
+            <circle cx="150" cy="190" r="56" fill={t.ink} fillOpacity="0.85" />
+            <rect x="0" y="190" width="300" height="210" fill="#F7EFE6" />
+            <path d="M0 190 H300" stroke={t.ink} strokeOpacity="0.4" />
+            {[208, 224, 242].map((y, i) => (
+              <path key={y} d={`M${110 + i * 12} ${y} H${190 - i * 12}`} stroke={t.ink} strokeOpacity={0.5 - i * 0.12} strokeWidth="3" strokeLinecap="round" />
+            ))}
+            <path d="M-10 300 C 80 270, 190 320, 310 280" fill="none" stroke={t.ink} strokeOpacity="0.35" strokeWidth="2" strokeDasharray="1 9" strokeLinecap="round" />
+          </>
+        )}
+
+        {tone === "clay" && (
+          <>
+            <rect x="30" y="150" width="240" height="120" rx="60" fill="#FFFFFF" fillOpacity="0.35" />
+            {[
+              [95, 190, 34],
+              [185, 180, 28],
+              [140, 235, 30],
+              [215, 240, 22],
+            ].map(([x, y, r]) => (
+              <g key={`${x}-${y}`}>
+                <circle cx={x} cy={y} r={r} fill={t.soft} />
+                <circle cx={x} cy={y} r={r * 0.62} fill={t.ink} fillOpacity="0.28" />
+              </g>
+            ))}
+            <circle cx="95" cy="190" r="9" fill="#9CAF79" />
+            <circle cx="140" cy="235" r="8" fill="#506C50" fillOpacity="0.7" />
+          </>
+        )}
+
+        {tone === "leaf" && (
+          <>
+            <path d="M150 90 C 215 130, 225 215, 150 265 C 75 215, 85 130, 150 90 Z" fill={t.soft} fillOpacity="0.55" />
+            <path d="M150 110 V 255" stroke={t.ink} strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" />
+            {[150, 180, 210].map((y) => (
+              <path key={y} d={`M150 ${y} q 22 -14 36 -30 M150 ${y} q -22 -14 -36 -30`} fill="none" stroke={t.ink} strokeOpacity="0.35" strokeWidth="1.6" strokeLinecap="round" />
+            ))}
+          </>
+        )}
+
+        {tone === "dusk" && (
+          <>
+            <circle cx="125" cy="185" r="52" fill={t.soft} fillOpacity="0.55" />
+            <circle cx="178" cy="185" r="52" fill="#9CAF79" fillOpacity="0.55" />
+            <circle cx="152" cy="185" r="12" fill="#FFFFFF" fillOpacity="0.9" />
+            <circle cx="232" cy="80" r="14" fill="#FFFFFF" fillOpacity="0.8" />
+          </>
+        )}
+
+        <path d="M0 330 C 90 305, 200 345, 300 318 L300 400 L0 400 Z" fill="#FFFFFF" fillOpacity="0.45" />
+      </svg>
+      {showNotes && <span className="photo-note mono">Photo needed</span>}
+    </div>
   );
 }

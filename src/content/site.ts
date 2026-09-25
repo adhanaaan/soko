@@ -68,13 +68,13 @@ export const seo = {
 } as const;
 
 export const hero = {
-  headline: "A different kind of weekend for your brain.",
+  headline: "A different kind of weekend for *your brain.*",
   lede: "Clarity brings science, movement, food and good company together in a small-group executive brain health retreat.",
 };
 
 export const audience = {
   kicker: "Who it's for",
-  heading: "For sharp people who've started to notice the fog.",
+  heading: "For sharp people who've started to notice *the fog.*",
   intro:
     "Long weeks, short nights and back-to-back decisions add up. If your focus slips by mid-afternoon, or you simply want to protect the brain your work depends on, Clarity helps you see what's driving it and which everyday habits you can change.",
   forYou: [
@@ -136,7 +136,7 @@ export const specs = [
 
 export const science = {
   kicker: "The science becomes the schedule",
-  heading: "Four domains of brain health, built into one weekend.",
+  heading: "Four domains of brain health, *built into one weekend.*",
   intro:
     "Brain health research points to several areas of daily life that work together. Clarity turns each one into something you do, not something you're told.",
   pillars: [
@@ -203,7 +203,7 @@ export const science = {
 /** Published facts about the reference study. Keep these exact; they are cited. */
 export const research = {
   kicker: "Research basis",
-  heading: "Why several domains, not one.",
+  heading: "Why several domains, *not one.*",
   intro:
     "The FINGER trial tested whether combining changes across several areas of life, rather than one at a time, could support cognition in older adults at increased risk of decline.",
   study: {
@@ -225,7 +225,7 @@ export type Day = { code: string; day: string; date: string; theme: string; summ
 
 export const weekend = {
   kicker: "The weekend",
-  heading: "Three days. Understand, experience, take it home.",
+  heading: "Three days. Understand, experience, *take it home.*",
   status: "Proposed programme · to be confirmed with partners",
   days: [
     {
@@ -276,7 +276,7 @@ export const weekend = {
 
 export const insight = {
   kicker: "Your data, handled with care",
-  heading: "Personal insight, explained in plain language.",
+  heading: "Personal insight, *explained in plain language.*",
   items: [
     {
       label: "Baseline",
@@ -305,7 +305,7 @@ export const insight = {
 
 export const people = {
   kicker: "The place and the people",
-  heading: "Three partners, one weekend.",
+  heading: "Three partners, *one weekend.*",
   roles: [
     {
       name: partners.hospitality.fullName,
@@ -327,7 +327,7 @@ export const people = {
 
 export const after = {
   kicker: "What happens after Batam",
-  heading: "The weekend ends. The habits don't have to.",
+  heading: "The weekend ends. *The habits don't have to.*",
   intro:
     "The hardest part of any retreat is Monday. So Clarity continues for 20 days after you get home, helping you put your two chosen habits into practice.",
   steps: [
@@ -341,7 +341,7 @@ export const after = {
 
 export const included = {
   kicker: "What's included",
-  heading: "What the package covers, from first email to day 20.",
+  heading: "What the package covers, *from first email to day 20.*",
   status: "Proposed inclusions · final package confirmed before bookings open",
   phases: [
     {
@@ -408,7 +408,7 @@ export const faq = [
 
 export const signup = {
   kicker: "Priority list",
-  heading: "Be first to hear when bookings open.",
+  heading: "Be first to hear when *bookings open.*",
   text: "Places are limited to a small group. Leave your name and email and we'll send confirmed dates, programme and pricing before anyone else.",
   disclaimer: "Joining the priority list does not reserve a place or commit you to booking.",
   consent:
@@ -422,6 +422,23 @@ export const signup = {
 export const footer = {
   boundary:
     "Clarity is a wellness experience informed by brain health research. It is not medical care and does not diagnose, treat or prevent any condition. Programme, dates and inclusions are subject to partner confirmation.",
+};
+
+/**
+ * Moments: the human side of the weekend. Shown as soft cards until real,
+ * licensed photography arrives. Aim for a mixed group of men and women,
+ * roughly 40 to 60, doing the actual activities.
+ */
+export const moments = {
+  kicker: "How it feels",
+  heading: "Science in the structure. *Warmth in the weekend.*",
+  intro: "The assessments are precise. Everything around them is unhurried: early walks, long meals, good conversation and time to rest.",
+  items: [
+    { key: "walk", title: "An early walk by the sea", caption: "Movement", tone: "dawn", src: null as string | null, alt: "Guests walking together along the shore at sunrise" },
+    { key: "table", title: "A long, shared table", caption: "Food", tone: "clay", src: null as string | null, alt: "Guests sharing plant-rich dishes at a long table" },
+    { key: "quiet", title: "An hour that's just yours", caption: "Rest", tone: "leaf", src: null as string | null, alt: "A guest reading on a villa terrace" },
+    { key: "talk", title: "Conversations that continue", caption: "Connection", tone: "dusk", src: null as string | null, alt: "Guests talking together in the evening" },
+  ],
 };
 
 /**

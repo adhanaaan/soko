@@ -45,8 +45,10 @@ Python dict. Change a string, save, and the page updates.
   line-art placeholder is shown.
 - **Colours and type** are CSS variables at the top of
   [`src/app/globals.css`](src/app/globals.css). Visual direction: clean
-  near-white canvas, Geist + Geist Mono, hairline grids, Soko palette as ink
-  and accents.
+  warm near-white canvas with soft morning-light gradients, Geist + Geist
+  Mono for structure, Instrument Serif italic for one accent phrase per
+  heading (wrap it in `*asterisks*` in the content file), pill-shaped
+  buttons and tags, Soko palette as ink and accents.
 
 ## Deploying to Vercel
 
@@ -96,6 +98,10 @@ Assets and integrations still needed:
 - [ ] Privacy notice reviewed (it's a draft; check against Singapore's PDPA)
 - [ ] One licensed venue photo for `images.place` (villa terrace or pool at
       golden hour, sea horizon)
+- [ ] Four licensed "moments" photos for `moments.items` (set each `src`):
+      early walk by the sea, a long shared table, a guest resting on a
+      terrace, guests talking in the evening. Show a mixed group of men and
+      women, roughly 40–60, in warm natural light
 - [ ] Partner logos, only if supplied for use
 - [ ] Soko wordmark file (currently set in type)
 - [ ] Final domain, then set `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_ALLOW_INDEXING`

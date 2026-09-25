@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { DomainDiagram, DomainGlyph, Mark, Photo } from "@/components/Art";
+import { DomainDiagram, DomainGlyph, Mark, MomentArt, Photo } from "@/components/Art";
 import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
+  moments,
   after,
   audience,
   included,
@@ -37,6 +38,7 @@ export default function Home() {
         <Hero />
         <Audience />
         <Idea />
+        <Moments />
         <Programme />
         <Research />
         <Weekend />
@@ -50,6 +52,11 @@ export default function Home() {
       <Footer />
     </>
   );
+}
+
+/** Renders *emphasis* in content strings as a soft serif accent. */
+function rich(text: string) {
+  return text.split(/\*(.+?)\*/g).map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part));
 }
 
 function TagChip({ tag }: { tag: Tag }) {
@@ -80,7 +87,7 @@ function Hero() {
               <span aria-hidden>/</span>
               <span>{event.venue.short.toUpperCase()}</span>
             </p>
-            <h1 id="hero-title">{hero.headline}</h1>
+            <h1 id="hero-title">{rich(hero.headline)}</h1>
             <p className="hero-lede">{hero.lede}</p>
             <div className="hero-actions">
               <a className="btn btn-accent" href="#priority-list">
@@ -130,7 +137,7 @@ function Audience() {
       <div className="wrap">
         <div className="section-head">
           <Index n="01" label={audience.kicker} />
-          <h2 id="audience-title">{audience.heading}</h2>
+          <h2 id="audience-title">{rich(audience.heading)}</h2>
           <p>{audience.intro}</p>
         </div>
         <div className="fit-grid reveal">
@@ -191,8 +198,8 @@ function Programme() {
     <section className="section" id="programme" aria-labelledby="programme-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="03" label={science.kicker} />
-          <h2 id="programme-title">{science.heading}</h2>
+          <Index n="04" label={science.kicker} />
+          <h2 id="programme-title">{rich(science.heading)}</h2>
           <p>{science.intro}</p>
         </div>
         <ul className="domains reveal">
@@ -244,8 +251,8 @@ function Research() {
     <section className="section" id="research" aria-labelledby="research-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="04" label={research.kicker} />
-          <h2 id="research-title">{research.heading}</h2>
+          <Index n="05" label={research.kicker} />
+          <h2 id="research-title">{rich(research.heading)}</h2>
           <p>{research.intro}</p>
         </div>
         <div className="research-grid">
@@ -305,8 +312,8 @@ function Weekend() {
     <section className="section weekend" id="weekend" aria-labelledby="weekend-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="05" label={weekend.kicker} />
-          <h2 id="weekend-title">{weekend.heading}</h2>
+          <Index n="06" label={weekend.kicker} />
+          <h2 id="weekend-title">{rich(weekend.heading)}</h2>
           <p className="status-pill mono">{weekend.status}</p>
         </div>
         <ol className="days">
@@ -348,8 +355,8 @@ function Included() {
     <section className="section" id="included" aria-labelledby="included-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="06" label={included.kicker} />
-          <h2 id="included-title">{included.heading}</h2>
+          <Index n="07" label={included.kicker} />
+          <h2 id="included-title">{rich(included.heading)}</h2>
           <p className="status-pill mono">{included.status}</p>
         </div>
         <ol className="phases reveal">
@@ -386,13 +393,38 @@ function Included() {
   );
 }
 
+function Moments() {
+  return (
+    <section className="section moments" id="moments" aria-labelledby="moments-title">
+      <div className="wrap">
+        <div className="section-head">
+          <Index n="03" label={moments.kicker} />
+          <h2 id="moments-title">{rich(moments.heading)}</h2>
+          <p>{moments.intro}</p>
+        </div>
+        <ul className="moment-grid">
+          {moments.items.map((m) => (
+            <li className="moment reveal" key={m.key} data-tone={m.tone}>
+              <MomentArt tone={m.tone} src={m.src} alt={m.alt} />
+              <div className="moment-label">
+                <span className="moment-chip">{m.caption}</span>
+                <p>{m.title}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function Insight() {
   return (
     <section className="section dark" id="insight" aria-labelledby="insight-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="07" label={insight.kicker} />
-          <h2 id="insight-title">{insight.heading}</h2>
+          <Index n="08" label={insight.kicker} />
+          <h2 id="insight-title">{rich(insight.heading)}</h2>
         </div>
         <ul className="insight-grid">
           {insight.items.map((item, i) => (
@@ -425,8 +457,8 @@ function People() {
     <section className="section" id="people" aria-labelledby="people-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="08" label={people.kicker} />
-          <h2 id="people-title">{people.heading}</h2>
+          <Index n="09" label={people.kicker} />
+          <h2 id="people-title">{rich(people.heading)}</h2>
         </div>
         <div className="people-grid">
           <div className="venue reveal">
@@ -464,8 +496,8 @@ function After() {
     <section className="section" id="after" aria-labelledby="after-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="09" label={after.kicker} />
-          <h2 id="after-title">{after.heading}</h2>
+          <Index n="10" label={after.kicker} />
+          <h2 id="after-title">{rich(after.heading)}</h2>
           <p>{after.intro}</p>
         </div>
         <div className="follow reveal">
@@ -500,7 +532,7 @@ function Faq() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="10" label="Questions" />
+          <Index n="11" label="Questions" />
         </div>
         <div className="faq-grid">
           <div className="faq-side">
@@ -562,11 +594,11 @@ function Signup() {
     <section className="signup dark" id="priority-list" aria-labelledby="signup-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="11" label={signup.kicker} />
+          <Index n="12" label={signup.kicker} />
         </div>
         <div className="signup-grid">
           <div className="signup-copy">
-            <h2 id="signup-title">{signup.heading}</h2>
+            <h2 id="signup-title">{rich(signup.heading)}</h2>
             <p>{signup.text}</p>
             <Pricing />
             <dl className="facts">

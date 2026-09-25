@@ -19,7 +19,7 @@ export default function OpengraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 40, color: "#506C50" }}>{event.name}</div>
-            <div style={{ fontSize: 70, lineHeight: 1.02, marginTop: 12, letterSpacing: -2 }}>{hero.headline}</div>
+            <div style={{ fontSize: 70, lineHeight: 1.02, marginTop: 12, letterSpacing: -2 }}>{hero.headline.replace(/\*/g, "")}</div>
           </div>
           <div style={{ fontSize: 18, color: "#5D6964", fontFamily: "monospace", letterSpacing: 1 }}>
             {`Organised by ${partners.organiser.name} · ${partners.hospitality.name} · ${partners.brainHealth.name}`}
