@@ -34,13 +34,13 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Science />
-        <Guides />
         <Problem />
         <Offer />
-        <Measures />
         <Weekend />
         <Moments />
+        <Science />
+        <Measures />
+        <Guides />
         <Faq />
         <Signup />
       </main>
@@ -75,7 +75,7 @@ function Hero() {
         )}
         <div className="hero-shade" aria-hidden />
         <div className="hero-inner">
-          <a className="hero-badge on-dark" href="#science">
+          <a className="hero-badge on-dark" href="#guides">
             <span className="hero-badge-dot" aria-hidden />
             {hero.badge}
           </a>
@@ -231,9 +231,10 @@ function Science() {
   return (
     <section className="section finger-section" id="science" aria-labelledby="science-title">
       <div className="wrap">
-        <h2 className="title" id="science-title">
+        <h2 className="title title-tight" id="science-title">
           {rich(science.heading)}
         </h2>
+        <p className="timing science-lede">{science.lede}</p>
         <ol className="finger">
           {areas.map((a) => (
             <li key={a.key}>

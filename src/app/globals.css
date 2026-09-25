@@ -3200,3 +3200,16 @@ h2 em {
     scroll-padding-inline: var(--gutter);
   }
 }
+
+.science-lede {
+  max-width: 44rem;
+}
+
+.finger-section {
+  border-top: 1px solid var(--line);
+  padding-top: var(--section);
+}
+
+#audience .split > div > h2 {
+  font-size: var(--step-3);
+}

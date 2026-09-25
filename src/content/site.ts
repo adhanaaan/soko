@@ -61,39 +61,39 @@ export const cta = {
 } as const;
 
 export const seo = {
-  title: "Clarity · Brain health weekend at Montigo Resorts Nongsa",
-  description: "Know where your brain stands. Leave with a plan. A small-group brain health weekend in Batam. Join the priority list.",
-  ogImageAlt: "Clarity: know where your brain stands, leave with a plan.",
+  title: "Clarity · Stay sharp for the decades ahead",
+  description: "One doctor-led weekend near Singapore. Find out where your brain health stands and leave with a simple plan to protect it. 15–20 places.",
+  ogImageAlt: "Clarity: stay sharp for the decades ahead.",
 } as const;
 
 export const hero = {
-  headline: "Know where your brain stands. *Leave with a plan.*",
-  lede: "A brain health weekend built on the FINGER trial. Results before you leave. 15–20 places, a short ferry from Singapore.",
-  badge: "Based on the FINGER trial",
+  headline: "Stay sharp for the *decades ahead.*",
+  lede: "One weekend. Find out where your brain health stands, and leave with a simple plan to protect it.",
+  badge: "Doctor-led · Science-backed",
   stats: [
-    { value: "4", label: "FINGER areas" },
-    { value: "15–20", label: "places" },
-    { value: "20-day", label: "plan at home" },
+    { value: "1 weekend", label: "Fri to Sun, near Singapore" },
+    { value: "Sunday", label: "Your results, explained" },
+    { value: "15–20", label: "places only" },
   ],
 };
 
 export const problem = {
-  heading: "Sharp mind. *Foggy afternoons?*",
-  forWho: "For founders, leaders and senior professionals who want to stay sharp.",
+  heading: "You track your steps, sleep and money. *When did you last check your brain?*",
+  forWho: "For founders, leaders and senior professionals who can't afford to lose their edge.",
   points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "You want to stay sharp for decades"],
 };
 
 /** The offer stack: every component named, plus a bonus, a guarantee and a real deadline. */
 export const offer = {
-  heading: "Everything you get.",
+  heading: "Here's everything you get.",
   stack: [
-    { name: "The Clarity Baseline", text: `Your private ${partners.assessmentName} brain health check, plus clinician-guided heart and metabolic context.` },
-    { name: "The FINGER Weekend", text: "Two nights at Montigo. Meals, movement and sessions across all four FINGER areas." },
-    { name: "Your Results, Explained", text: "One-to-one, before you leave on Sunday." },
-    { name: "The 20-Day Plan", text: "Two habits you choose, short prompts and two group check-ins." },
-    { name: "A Soko session in Singapore", text: "Keep the momentum going with the group back home.", bonus: true },
+    { name: "The Clarity Baseline", text: `See where your brain health stands today, with a private ${partners.assessmentName} check and clinician-guided heart and metabolic context.` },
+    { name: "Two Nights at Montigo", text: "By the sea. Great food, easy movement and real rest. All planned for you." },
+    { name: "Your Results, Explained", text: "One-to-one, in plain English, before you leave on Sunday." },
+    { name: "The 20-Day Plan", text: "Two small habits that fit your week, with prompts and two group check-ins." },
+    { name: "A Soko session in Singapore", text: "Meet the group again back home.", bonus: true },
   ],
-  promises: ["Results before you leave", "No fitness level needed", "Villa, meals and programme arranged"],
+  promises: ["Results before you leave", "No fitness level needed", "Villa, meals and schedule handled"],
   guarantee: {
     title: "Our promise",
     text: "[Guarantee to decide, e.g. full refund if you cancel 30+ days before, or if you don't leave with a clear plan.]",
@@ -176,8 +176,9 @@ export const moments = {
 };
 
 export const science = {
-  heading: "Four areas from the FINGER trial. *One weekend.*",
-  study: "FINGER: a two-year randomised trial of 1,260 adults aged 60–77 in Finland (The Lancet, 2015).",
+  heading: "Why it works.",
+  lede: "A landmark two-year clinical trial, FINGER, showed that working on four areas together can help protect thinking skills. Your weekend covers all four.",
+  study: "FINGER: randomised trial of 1,260 adults aged 60–77 in Finland (The Lancet, 2015).",
   linkLabel: "Read the study",
   href: "https://pubmed.ncbi.nlm.nih.gov/25771249/",
   // Evidence boundary. Keep it visible wherever the research is mentioned.
@@ -222,8 +223,8 @@ export const images = {
 } satisfies Record<string, ImageSlot>;
 
 export const nav = [
-  { href: "#science", label: "The science" },
   { href: "#offer", label: "What you get" },
-  { href: "#weekend", label: "The weekend" },
+  { href: "#weekend", label: "How it works" },
+  { href: "#science", label: "Why it works" },
   { href: "#faq", label: "FAQ" },
 ];
