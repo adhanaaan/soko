@@ -151,6 +151,10 @@ function Audience() {
             </ul>
           </div>
         </div>
+        <p className="boundary fit-note">
+          <span className="mono">Note</span>
+          <span>{audience.note}</span>
+        </p>
       </div>
     </section>
   );

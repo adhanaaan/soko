@@ -74,19 +74,22 @@ export const hero = {
 
 export const audience = {
   kicker: "Who it's for",
-  heading: "Built for people who carry a lot, and want to keep their edge.",
-  intro: "Clarity is designed for a small group of executives and professionals, broadly aged 40 to 60. Inclusive by design; no fitness level required.",
+  heading: "For sharp people who've started to notice the fog.",
+  intro:
+    "Long weeks, short nights and back-to-back decisions add up. If your focus slips by mid-afternoon, or you simply want to protect the brain your work depends on, Clarity helps you see what's driving it and which everyday habits you can change.",
   forYou: [
-    "You lead a demanding life and want to protect your long-term brain health",
-    "You'd rather try the habits than sit through another talk",
-    "You want clear, private insight, explained without alarm",
-    "You'd value a weekend with a small group of peers",
+    "Your focus fades faster than it used to, especially later in the day",
+    "You wake up tired, or lean on caffeine to feel sharp",
+    "You want to know where your brain health stands now, instead of guessing",
+    "You want a practical plan to stay sharp for the decades ahead",
+    "You'd rather try the habits with peers than sit through another talk",
   ],
   notFor: [
-    "You're looking for a diagnosis or medical treatment",
-    "You want an intensive fitness bootcamp",
+    "You need a diagnosis or treatment for a medical condition",
+    "You're after a quick fix or a supplement stack",
     "You want a spa-only break",
   ],
+  note: "Brain fog has many possible causes. Clarity explores everyday factors like sleep, movement, food and stress. If your symptoms are new, sudden or worrying, please speak to your doctor first.",
 };
 
 export const idea = {

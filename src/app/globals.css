@@ -766,6 +766,14 @@ ol {
   color: var(--clay-ink);
 }
 
+.fit-note {
+  margin-top: 1.5rem;
+}
+
+.boundary.fit-note .mono {
+  color: var(--moss-deep);
+}
+
 @media (max-width: 860px) {
   .fit-grid {
     grid-template-columns: 1fr;
