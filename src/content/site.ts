@@ -57,43 +57,44 @@ export const pricing = {
 export const cta = {
   primary: "Join the priority list",
   short: "Join list",
-  note: "20–22 Nov 2026 (to be confirmed) · Montigo Resorts Nongsa",
+  note: "Dates and package to be confirmed with partners.",
 } as const;
 
 export const seo = {
-  title: "Clarity · Stay sharp for the decades ahead",
-  description: "One doctor-led weekend near Singapore. Find out where your brain health stands and leave with a simple plan to protect it. 15–20 places.",
-  ogImageAlt: "Clarity: stay sharp for the decades ahead.",
+  title: "Clarity · A brain health retreat by the sea, near Singapore",
+  description: "Two nights at Montigo Resorts Nongsa. Good food, movement, rest and doctor-led brain health for 15–20 guests. 20–22 Nov 2026. Join the priority list.",
+  ogImageAlt: "Clarity: the weekend away your brain has been asking for.",
 } as const;
 
 export const hero = {
-  headline: "Stay sharp for the *decades ahead.*",
-  lede: "One weekend. Find out where your brain health stands, and leave with a simple plan to protect it.",
-  badge: "Doctor-led. Science-backed.",
+  headline: "The weekend away your *brain has been asking for.*",
+  lede: "Two nights by the sea at Montigo Resorts Nongsa, a short ferry from Singapore. Good food, easy movement, real rest and doctor-led brain health. Come home with a plan.",
+  badge: "Small-group retreat · 20–22 Nov 2026",
   stats: [
-    { value: "1 weekend", label: "Fri to Sun, near Singapore" },
-    { value: "Sunday", label: "Your results, explained" },
-    { value: "15–20", label: "places only" },
+    { value: "2 nights", label: "by the sea, near Singapore" },
+    { value: "15–20", label: "guests only" },
+    { value: "Doctor-led", label: "brain health programme" },
   ],
 };
 
 export const problem = {
-  heading: "You track your steps, sleep and money. When did you last check your brain?",
-  forWho: "For founders, leaders and senior professionals who can't afford to lose their edge.",
-  points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "You want to stay sharp for decades"],
+  heading: "You take holidays. You come back just as tired.",
+  forWho: "Clarity is a different kind of break, for founders, leaders and senior professionals who want to rest and stay sharp.",
+  points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "Holidays don't fix it"],
 };
 
 /** The offer stack: every component named, plus a bonus, a guarantee and a real deadline. */
 export const offer = {
-  heading: "Here's everything you get.",
+  heading: "Everything in your weekend.",
   stack: [
-    { name: "The Clarity Baseline", text: `See where your brain health stands today, with a private ${partners.assessmentName} check and clinician-guided heart and metabolic context.` },
-    { name: "Two Nights at Montigo", text: "By the sea. Great food, easy movement and real rest. All planned for you." },
+    { name: "Two Nights at Montigo", text: "A shared two-bedroom villa by the sea. Every meal, every session and your downtime, all planned for you." },
+    { name: "The Clarity Programme", text: "Morning movement, chef-led food, brain health sessions and recovery, built on the four FINGER areas." },
+    { name: "Your Private Brain Health Baseline", text: `A ${partners.assessmentName} check plus clinician-guided heart and metabolic context.` },
     { name: "Your Results, Explained", text: "One-to-one, in plain English, before you leave on Sunday." },
     { name: "The 20-Day Plan", text: "Two small habits that fit your week, with prompts and two group check-ins." },
     { name: "A Soko session in Singapore", text: "Meet the group again back home.", bonus: true },
   ],
-  promises: ["Results before you leave", "No fitness level needed", "Villa, meals and schedule handled"],
+  promises: ["Small group of 15–20", "No fitness level needed", "Results before you leave"],
   guarantee: {
     title: "Our promise",
     text: "[Guarantee to decide, e.g. full refund if you cancel 30+ days before, or if you don't leave with a clear plan.]",
@@ -188,7 +189,7 @@ export const weekend = {
 };
 
 export const moments = {
-  heading: "Unhurried, on purpose.",
+  heading: "Slow down. On purpose.",
   items: [
     { key: "walk", title: "Sunrise walks", tone: "dawn", src: null as string | null, alt: "Guests walking together along the shore at sunrise" },
     { key: "table", title: "Long lunches", tone: "clay", src: null as string | null, alt: "Guests sharing plant-rich dishes at a long table" },

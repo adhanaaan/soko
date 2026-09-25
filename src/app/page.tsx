@@ -37,9 +37,9 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Problem />
+        <Moments />
         <Offer />
         <Weekend />
-        <Moments />
         <Science />
         <Measures />
         <Guides />
@@ -78,7 +78,7 @@ function Hero() {
         )}
         <div className="hero-shade" aria-hidden />
         <div className="hero-inner">
-          <a className="hero-badge on-dark" href="#guides">
+          <a className="hero-badge on-dark" href="#weekend">
             <span className="hero-badge-dot" aria-hidden />
             {hero.badge}
           </a>
