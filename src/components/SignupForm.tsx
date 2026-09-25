@@ -105,7 +105,7 @@ export function SignupForm() {
           </svg>
         </div>
         <h3>{status.duplicate ? "You're already on the list." : signup.success.title}</h3>
-        <p>{status.duplicate ? "Good news — we already have your details. We'll be in touch when bookings open." : signup.success.text}</p>
+        <p>{status.duplicate ? "We already have your details." : signup.success.text}</p>
       </div>
     );
   }
@@ -114,10 +114,6 @@ export function SignupForm() {
 
   return (
     <form className="form brackets" onSubmit={onSubmit} noValidate aria-describedby={`${id}-status`}>
-      <p className="form-head mono">
-        <span>Priority list</span>
-        <span>Name + email only</span>
-      </p>
       <div className="field">
         <label htmlFor={`${id}-name`}>Name</label>
         <input

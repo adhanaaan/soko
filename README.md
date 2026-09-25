@@ -35,11 +35,11 @@ Python dict. Change a string, save, and the page updates.
 - **Pricing** stays hidden until `pricing.showPricing` is set to `true`. When
   hidden, the page says "Join the priority list for first access when bookings
   open". Prices never appear in metadata or the share image.
-- **Programme detail**: each activity can carry a tag (`Private`, `Group`,
-  `Your choice`, `Where suitable`, `Free time`, `Take-home`), shown as small
-  labels on the page.
-- **Research facts** about the FINGER study live in `research`. They are cited
-  facts; keep them exact.
+- **Page sections** (in order): `hero`, `problem`, `offer`, `weekend`
+  (the full session list sits behind "See the full schedule"), `moments`,
+  `science`, `faq`, `signup`. Keep each one short: one idea per section.
+- **Evidence boundary**: `science.note` must stay visible wherever the
+  FINGER trial is mentioned.
 - **Photos**: put an approved image in `public/images/` and set `src` on
   `images.place` (for example `src: "/images/villa.jpg"`). Until then, a
   line-art placeholder is shown.
@@ -96,11 +96,8 @@ Assets and integrations still needed:
 - [ ] Contact email (currently the placeholder `hello@soko.example`)
 - [ ] Priority-list storage connected (docs/priority-list-setup.md)
 - [ ] Privacy notice reviewed (it's a draft; check against Singapore's PDPA)
-- [ ] One licensed venue photo for `images.place` (villa terrace or pool at
-      golden hour, sea horizon)
 - [ ] Four licensed "moments" photos for `moments.items` (set each `src`):
-      early walk by the sea, a long shared table, a guest resting on a
-      terrace, guests talking in the evening. Show a mixed group of men and
+      sunrise walk, long lunch, a guest resting, guests talking. Show a mixed group of men and
       women, roughly 40–60, in warm natural light
 - [ ] Partner logos, only if supplied for use
 - [ ] Soko wordmark file (currently set in type)
