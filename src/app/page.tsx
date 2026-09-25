@@ -29,11 +29,11 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <Science />
         <Problem />
         <Offer />
         <Weekend />
         <Moments />
-        <Science />
         <Faq />
         <Signup />
       </main>
@@ -60,6 +60,10 @@ function Hero() {
             </a>
           </div>
           <p className="hero-note">{cta.note}</p>
+          <a className="hero-badge" href="#science">
+            <span className="hero-badge-dot" aria-hidden />
+            {hero.badge} <span aria-hidden>↓</span>
+          </a>
         </div>
         <div className="hero-visual">
           <DomainDiagram pillars={areas} />
@@ -171,25 +175,40 @@ function Moments() {
 
 function Science() {
   return (
-    <section className="section" id="science" aria-labelledby="science-title">
-      <div className="wrap split">
-        <h2 id="science-title">{science.heading}</h2>
-        <div className="science">
-          <p className="science-line">{science.line}</p>
-          <a className="study-link" href={science.href} target="_blank" rel="noopener noreferrer">
-            {science.linkLabel}
-            <span className="visually-hidden"> (opens in a new tab)</span> <span aria-hidden>↗</span>
-          </a>
+    <section className="section finger-section" id="science" aria-labelledby="science-title">
+      <div className="wrap">
+        <h2 className="title" id="science-title">
+          {rich(science.heading)}
+        </h2>
+        <ol className="finger">
+          {areas.map((a) => (
+            <li key={a.key}>
+              <p className="finger-area mono">
+                <span>{a.code}</span> FINGER · {a.finger}
+              </p>
+              <h3>{a.title}</h3>
+              <p>{a.what}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="finger-foot">
+          <p>
+            {science.study}{" "}
+            <a href={science.href} target="_blank" rel="noopener noreferrer">
+              {science.linkLabel}
+              <span className="visually-hidden"> (opens in a new tab)</span> <span aria-hidden>↗</span>
+            </a>
+          </p>
           <p className="fine">{science.note}</p>
           <p className="partners-row">
             <span>
-              Organised by <strong>{partners.organiser.name}</strong>
+              Science by <strong>{partners.brainHealth.name}</strong>
             </span>
             <span>
               Hosted at <strong>{partners.hospitality.fullName}</strong>
             </span>
             <span>
-              Science by <strong>{partners.brainHealth.name}</strong>
+              Organised by <strong>{partners.organiser.name}</strong>
             </span>
           </p>
         </div>

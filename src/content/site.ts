@@ -68,7 +68,8 @@ export const seo = {
 
 export const hero = {
   headline: "Know where your brain stands. *Leave with a plan.*",
-  lede: "A brain health weekend for 15–20 people. A short ferry from Singapore.",
+  lede: "A brain health weekend built on the four areas of the FINGER trial. 15–20 people. A short ferry from Singapore.",
+  badge: "Based on the FINGER trial",
 };
 
 export const problem = {
@@ -80,20 +81,23 @@ export const offer = {
   heading: "What you get.",
   items: [
     { n: "01", title: "Your baseline", text: `A private ${partners.assessmentName} brain health check.` },
-    { n: "02", title: "Your weekend", text: "Two nights at Montigo. Move, eat well, learn, rest." },
+    { n: "02", title: "Your weekend", text: "Two nights at Montigo, practising all four FINGER areas." },
     { n: "03", title: "Your plan", text: "Two habits. 20 days of support at home." },
   ],
   note: "Proposed package. Final details before bookings open.",
 };
 
-export type Pillar = { key: string; code: string; title: string };
+export type Pillar = { key: string; code: string; title: string; finger: string; what: string };
 
-/** The four research areas, used by the hero diagram and the science line. */
+/**
+ * The four FINGER trial areas and what guests actually do for each one.
+ * Used by the hero diagram and the FINGER map directly under the hero.
+ */
 export const areas: Pillar[] = [
-  { key: "move", code: "01", title: "Move" },
-  { key: "eat", code: "02", title: "Eat well" },
-  { key: "think", code: "03", title: "Think actively" },
-  { key: "risks", code: "04", title: "Know your risks" },
+  { key: "move", code: "01", finger: "Exercise", title: "Move", what: "Morning walks, mobility and pickleball, at any fitness level." },
+  { key: "eat", code: "02", finger: "Diet", title: "Eat well", what: "Chef-led, plant-rich, heart-healthy meals. No calorie counting." },
+  { key: "think", code: "03", finger: "Brain training", title: "Think actively", what: `Your private ${partners.assessmentName} baseline and group brain challenges.` },
+  { key: "risks", code: "04", finger: "Heart health", title: "Know your risks", what: "Clinician-guided vascular and metabolic context, with CGM where suitable." },
 ];
 
 export const weekend = {
@@ -133,12 +137,12 @@ export const moments = {
 };
 
 export const science = {
-  heading: "Built on research.",
-  line: "Structured around the four areas of the FINGER trial: diet, exercise, brain training and heart health.",
+  heading: "Four areas from the FINGER trial. *One weekend.*",
+  study: "FINGER: a two-year randomised trial of 1,260 adults aged 60–77 in Finland (The Lancet, 2015).",
   linkLabel: "Read the study",
   href: "https://pubmed.ncbi.nlm.nih.gov/25771249/",
   // Evidence boundary. Keep it visible wherever the research is mentioned.
-  note: "Inspired by the two-year FINGER trial. Clarity doesn't replicate it or promise a clinical outcome.",
+  note: "Inspired by FINGER. Clarity doesn't replicate the trial or promise a clinical outcome.",
 };
 
 export const faq = [
@@ -173,6 +177,7 @@ export const images = {
 } satisfies Record<string, ImageSlot>;
 
 export const nav = [
+  { href: "#science", label: "The science" },
   { href: "#offer", label: "What you get" },
   { href: "#weekend", label: "The weekend" },
   { href: "#faq", label: "FAQ" },

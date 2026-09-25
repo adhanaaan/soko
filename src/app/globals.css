@@ -2597,3 +2597,107 @@ h2 em {
     font-size: 0.88rem;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   FINGER: visible from the first screen
+   --------------------------------------------------------------------------- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: rgb(255 255 255 / 0.6);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.hero-badge:hover {
+  border-color: var(--ink);
+}
+
+.hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--moss);
+}
+
+.finger-section {
+  border-top: 0;
+  padding-top: clamp(1rem, 0.5rem + 2vw, 3rem);
+}
+
+.finger {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.finger li {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.finger-area {
+  color: var(--moss-deep);
+}
+
+.finger-area span {
+  color: var(--clay-ink);
+  margin-right: 0.35rem;
+}
+
+.finger h3 {
+  font-size: var(--step-2);
+  margin-top: 0.75rem;
+}
+
+.finger li p:last-child {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.finger-foot {
+  margin-top: 1.5rem;
+  max-width: 52rem;
+}
+
+.finger-foot > p:first-child {
+  color: var(--ink-2);
+}
+
+.finger-foot a {
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .finger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .finger {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .finger li {
+    grid-template-columns: 1fr;
+    padding: 1.1rem 1.2rem;
+  }
+  .finger h3 {
+    margin-top: 0.25rem;
+  }
+}

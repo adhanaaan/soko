@@ -32,9 +32,9 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
   const ticks = Array.from({ length: 72 }, (_, i) => i * 5);
   return (
     <svg className="diagram" viewBox="0 0 500 500" role="img" aria-labelledby="diagram-title diagram-desc">
-      <title id="diagram-title">The four domains of the Clarity weekend</title>
+      <title id="diagram-title">The four FINGER trial areas in the Clarity weekend</title>
       <desc id="diagram-desc">
-        {pillars.map((p) => p.title).join(", ")}, arranged around your private baseline.
+        {pillars.map((p) => `${p.title} (${p.finger})`).join(", ")}, arranged around your private baseline.
       </desc>
 
       {/* scale ring */}
@@ -95,7 +95,7 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
           <circle cx={pos[i].x} cy={pos[i].y} r="16" fill="#FBFBF8" stroke={colours[i]} strokeWidth="1.5" />
           <circle cx={pos[i].x} cy={pos[i].y} r="7" fill={colours[i]} />
           <text x={pos[i].x} y={pos[i].y + pos[i].ly - 14} textAnchor="middle">
-            {p.code}
+            {p.code} · {p.finger.toUpperCase()}
           </text>
           <text className="node-title" x={pos[i].x} y={pos[i].y + pos[i].ly + 4} textAnchor="middle">
             {p.title}
@@ -104,7 +104,7 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
       ))}
 
       <text x="250" y="498" textAnchor="middle" style={{ fontSize: 10, fill: C.ink3 }}>
-        FIG. 01 · FOUR DOMAINS, ONE WEEKEND
+        FIG. 01 · THE FOUR FINGER AREAS, AROUND YOU
       </text>
     </svg>
   );
