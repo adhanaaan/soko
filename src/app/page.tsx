@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DomainDiagram, Mark, MomentArt } from "@/components/Art";
+import { Mark, MomentArt } from "@/components/Art";
+import { AreaScene, HeroScene } from "@/components/Scenes";
 import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
@@ -13,6 +14,7 @@ import {
   guides,
   measures,
   hero,
+  images,
   moments,
   offer,
   partners,
@@ -64,25 +66,36 @@ function rich(text: string) {
 
 function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="wrap hero-grid">
-        <div className="hero-copy">
+    <section className="hero-full" id="top" aria-labelledby="hero-title">
+      <div className="hero-frame">
+        {images.hero.src ? (
+          <Image className="scene" src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" />
+        ) : (
+          <HeroScene />
+        )}
+        <div className="hero-shade" aria-hidden />
+        <div className="hero-inner">
+          <a className="hero-badge on-dark" href="#science">
+            <span className="hero-badge-dot" aria-hidden />
+            {hero.badge}
+          </a>
           <h1 id="hero-title">{rich(hero.headline)}</h1>
           <p className="hero-lede">{hero.lede}</p>
           <div className="hero-actions">
-            <a className="btn btn-accent" href="#priority-list">
+            <a className="btn btn-light" href="#priority-list">
               {cta.primary} <span className="arrow" aria-hidden>→</span>
             </a>
           </div>
           <p className="hero-note">{cta.note}</p>
-          <a className="hero-badge" href="#science">
-            <span className="hero-badge-dot" aria-hidden />
-            {hero.badge} <span aria-hidden>↓</span>
-          </a>
         </div>
-        <div className="hero-visual">
-          <DomainDiagram pillars={areas} />
-        </div>
+        <dl className="hero-stats">
+          {hero.stats.map((st) => (
+            <div key={st.label}>
+              <dt>{st.value}</dt>
+              <dd>{st.label}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -224,9 +237,10 @@ function Science() {
         <ol className="finger">
           {areas.map((a) => (
             <li key={a.key}>
-              <p className="finger-area mono">
-                <span>{a.code}</span> FINGER · {a.finger}
-              </p>
+              <div className="tile">
+                <AreaScene area={a.key} />
+                <p className="tile-label mono">FINGER · {a.finger}</p>
+              </div>
               <h3>{a.title}</h3>
               <p>{a.what}</p>
             </li>

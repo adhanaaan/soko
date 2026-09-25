@@ -104,6 +104,8 @@ Assets and integrations still needed:
 - [ ] Contact email (currently the placeholder `hello@soko.example`)
 - [ ] Priority-list storage connected (docs/priority-list-setup.md)
 - [ ] Privacy notice reviewed (it's a draft; check against Singapore's PDPA)
+- [ ] A wide hero photo for `images.hero` (sunrise over the sea at Nongsa,
+      space for text on the left). Until then an illustrated scene is shown.
 - [ ] Four licensed "moments" photos for `moments.items` (set each `src`):
       sunrise walk, long lunch, a guest resting, guests talking. Show a mixed group of men and
       women, roughly 40–60, in warm natural light

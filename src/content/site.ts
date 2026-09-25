@@ -70,6 +70,11 @@ export const hero = {
   headline: "Know where your brain stands. *Leave with a plan.*",
   lede: "A brain health weekend built on the FINGER trial. Results before you leave. 15–20 places, a short ferry from Singapore.",
   badge: "Based on the FINGER trial",
+  stats: [
+    { value: "4", label: "FINGER areas" },
+    { value: "15–20", label: "places" },
+    { value: "20-day", label: "plan at home" },
+  ],
 };
 
 export const problem = {
@@ -204,6 +209,11 @@ export const footer = {
 export type ImageSlot = { src: string | null; alt: string; needed: string };
 
 export const images = {
+  hero: {
+    src: null,
+    alt: "Sunrise over the sea at Nongsa, Batam",
+    needed: "Wide sunrise over the sea at Montigo Resorts Nongsa, space for text on the left",
+  },
   place: {
     src: null,
     alt: "Morning light over the sea from a villa terrace at Montigo Resorts Nongsa",
