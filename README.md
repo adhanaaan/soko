@@ -35,8 +35,8 @@ Python dict. Change a string, save, and the page updates.
 - **Pricing** stays hidden until `pricing.showPricing` is set to `true`. When
   hidden, the page says "Join the priority list for first access when bookings
   open". Prices never appear in metadata or the share image.
-- **Page sections** (in order): `hero`, `problem`, `offer`, `weekend`
-  (the full session list sits behind "See the full schedule"), `moments`,
+- **Page sections** (in order): `hero`, `problem`, `method` (the three clinical steps and Dr. Tong's quote), `moments`, `offer`, `weekend`
+  (the full session list sits behind "See the full schedule"),
   `science`, `faq`, `signup`. Keep each one short: one idea per section.
 - **Evidence boundary**: `science.note` must stay visible wherever the
   FINGER trial is mentioned.

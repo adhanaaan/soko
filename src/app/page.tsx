@@ -14,6 +14,7 @@ import {
   expertQuote,
   guides,
   measures,
+  method,
   note,
   hero,
   images,
@@ -37,6 +38,7 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Problem />
+        <Method />
         <Moments />
         <Offer />
         <Weekend />
@@ -78,7 +80,7 @@ function Hero() {
         )}
         <div className="hero-shade" aria-hidden />
         <div className="hero-inner">
-          <a className="hero-badge on-dark" href="#weekend">
+          <a className="hero-badge on-dark" href="#method">
             <span className="hero-badge-dot" aria-hidden />
             {hero.badge}
           </a>
@@ -117,6 +119,64 @@ function Problem() {
             <li key={t}>{t}</li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+const methodTone = ["measure", "understand", "act"] as const;
+
+function Method() {
+  return (
+    <section className="section method-section" id="method" aria-labelledby="method-title">
+      <div className="wrap">
+        <h2 className="title title-tight" id="method-title">
+          {rich(method.heading)}
+        </h2>
+        <p className="timing">{method.lede}</p>
+        <ol className="method">
+          {method.steps.map((st, i) => (
+            <li key={st.n}>
+              <div className={`method-visual tone-${methodTone[i]}`}>
+                <span className="method-n" aria-hidden>
+                  {st.n}
+                </span>
+                <div className="method-card" aria-hidden>
+                  <p className="method-card-label">
+                    <span className="method-dot" />
+                    {st.card.label}
+                  </p>
+                  <ul>
+                    {st.card.rows.map((row) => (
+                      <li key={row.k}>
+                        <span>{row.k}</span>
+                        <span className="method-v">
+                          <span className="method-check">✓</span>
+                          {row.v}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <h3>{st.title}</h3>
+              <p>{st.text}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="fine">{method.note}</p>
+        <figure className="pull-quote">
+          <blockquote>{rich(expertQuote.quote)}</blockquote>
+          <figcaption>
+            <span className="pq-avatar" aria-hidden>
+              ST
+            </span>
+            <span>
+              <strong>{expertQuote.name}</strong>
+              {expertQuote.role}
+            </span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
@@ -299,18 +359,6 @@ function Guides() {
             </li>
           ))}
         </ul>
-        <figure className="pull-quote">
-          <blockquote>{rich(expertQuote.quote)}</blockquote>
-          <figcaption>
-            <span className="pq-avatar" aria-hidden>
-              ST
-            </span>
-            <span>
-              <strong>{expertQuote.name}</strong>
-              {expertQuote.role}
-            </span>
-          </figcaption>
-        </figure>
       </div>
     </section>
   );

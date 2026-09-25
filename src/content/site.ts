@@ -61,26 +61,74 @@ export const cta = {
 } as const;
 
 export const seo = {
-  title: "Clarity · A brain health retreat by the sea, near Singapore",
-  description: "Two nights at Montigo Resorts Nongsa. Good food, movement, rest and doctor-led brain health for 15–20 guests. 20–22 Nov 2026. Join the priority list.",
-  ogImageAlt: "Clarity: the weekend away your brain has been asking for.",
+  title: "Clarity · A clinically led brain health retreat near Singapore",
+  description: "Brain clarity in one weekend. Measure your brain health, understand it with a clinician and leave with a plan. Montigo Resorts Nongsa, 20–22 Nov 2026. 15–20 guests.",
+  ogImageAlt: "Clarity: brain clarity in one weekend.",
 } as const;
 
 export const hero = {
-  headline: "The weekend away your *brain has been asking for.*",
-  lede: "Two nights by the sea at Montigo Resorts Nongsa, a short ferry from Singapore. Good food, easy movement, real rest and doctor-led brain health. Come home with a plan.",
-  badge: "Small-group retreat · 20–22 Nov 2026",
+  headline: "Brain clarity, *in one weekend.*",
+  lede: "A clinically led retreat by the sea, a short ferry from Singapore. Measure your brain health. Understand it with a clinician. Leave with a clear head and a clear plan.",
+  badge: "Clinically led retreat · 20–22 Nov 2026",
   stats: [
-    { value: "2 nights", label: "by the sea, near Singapore" },
+    { value: "Clinically led", label: "by Dr. Stephen Tong" },
+    { value: "2 nights", label: "at Montigo Resorts Nongsa" },
     { value: "15–20", label: "guests only" },
-    { value: "Doctor-led", label: "brain health programme" },
   ],
 };
 
 export const problem = {
-  heading: "You take holidays. You come back just as tired.",
-  forWho: "Clarity is a different kind of break, for founders, leaders and senior professionals who want to rest and stay sharp.",
+  heading: "Your brain runs everything. When did anyone last check it?",
+  forWho: "Clarity is for founders, leaders and senior professionals who want a clear head, and clear answers on where their brain health stands.",
   points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "Holidays don't fix it"],
+};
+
+/** How it works: the clinical method, in three steps. */
+export const method = {
+  heading: "Measure. Understand. *Act.*",
+  lede: "A structured, clinician-guided programme. No guesswork.",
+  steps: [
+    {
+      n: "01",
+      title: "Measure",
+      text: `Your private ${partners.assessmentName} cognitive baseline, with heart, metabolic and glucose context.`,
+      card: {
+        label: "Your baseline",
+        rows: [
+          { k: "Cognitive baseline", v: "Recorded" },
+          { k: "Glucose response", v: "Tracking" },
+          { k: "Heart & metabolic", v: "Checked" },
+        ],
+      },
+    },
+    {
+      n: "02",
+      title: "Understand",
+      text: "A clinician explains your results one-to-one, in plain English, before you leave.",
+      card: {
+        label: "Your results, explained",
+        rows: [
+          { k: "What we measured", v: "Explained" },
+          { k: "What it means for you", v: "Discussed 1:1" },
+          { k: "Where to focus", v: "Agreed" },
+        ],
+      },
+    },
+    {
+      n: "03",
+      title: "Act",
+      text: "Two habits chosen with your clinician. A 20-day plan with prompts and two group check-ins.",
+      card: {
+        label: "Your 20-day plan",
+        rows: [
+          { k: "Habit one", v: "Chosen" },
+          { k: "Habit two", v: "Chosen" },
+          { k: "Group check-ins", v: "Two" },
+        ],
+      },
+    },
+  ],
+  note: "Illustrative. Your actual summary is private and personal.",
 };
 
 /** The offer stack: every component named, plus a bonus, a guarantee and a real deadline. */
@@ -88,7 +136,7 @@ export const offer = {
   heading: "Everything in your weekend.",
   stack: [
     { name: "Two Nights at Montigo", text: "A shared two-bedroom villa by the sea. Every meal, every session and your downtime, all planned for you." },
-    { name: "The Clarity Programme", text: "Morning movement, chef-led food, brain health sessions and recovery, built on the four FINGER areas." },
+    { name: "The Clarity Programme", text: "Clinician-guided brain health sessions, morning movement, chef-led food and recovery, built on the four FINGER areas." },
     { name: "Your Private Brain Health Baseline", text: `A ${partners.assessmentName} check plus clinician-guided heart and metabolic context.` },
     { name: "Your Results, Explained", text: "One-to-one, in plain English, before you leave on Sunday." },
     { name: "The 20-Day Plan", text: "Two small habits that fit your week, with prompts and two group check-ins." },
@@ -162,24 +210,24 @@ export const measures = {
 };
 
 export const weekend = {
-  heading: "Three days.",
+  heading: "Your three days.",
   timing: "Leave Friday [2pm]. Back in Singapore Sunday [afternoon].",
   days: [
     {
       day: "Fri",
-      theme: "Understand",
+      theme: "Measure",
       line: "Arrive. Get your baseline.",
       sessions: ["Ferry and welcome", "Cognitive baseline", "CGM set-up (where suitable)", "Dinner together"],
     },
     {
       day: "Sat",
-      theme: "Experience",
+      theme: "Reset",
       line: "Move. Eat. Learn. Rest.",
       sessions: ["Morning movement", "Brain health session", "Nutrition with the chef", "Brain challenge", "Free time", "Recovery session", "Dinner together"],
     },
     {
       day: "Sun",
-      theme: "Take it home",
+      theme: "Plan",
       line: "Your results. Your plan.",
       sessions: ["Gentle movement", "Your results, explained", "Pick two habits", "Leave with your 20-day plan"],
     },
@@ -199,8 +247,8 @@ export const moments = {
 };
 
 export const science = {
-  heading: "Why it works.",
-  lede: "A landmark two-year clinical trial, FINGER, showed that working on four areas together can help protect thinking skills. Your weekend covers all four.",
+  heading: "Built on clinical evidence.",
+  lede: "The programme follows FINGER, a landmark two-year clinical trial. It showed that working on four areas together can help protect thinking skills. Your weekend covers all four.",
   study: "FINGER: randomised trial of 1,260 adults aged 60–77 in Finland (The Lancet, 2015).",
   linkLabel: "Read the study",
   href: "https://pubmed.ncbi.nlm.nih.gov/25771249/",
@@ -246,8 +294,8 @@ export const images = {
 } satisfies Record<string, ImageSlot>;
 
 export const nav = [
+  { href: "#method", label: "How it works" },
   { href: "#offer", label: "What you get" },
-  { href: "#weekend", label: "How it works" },
-  { href: "#science", label: "Why it works" },
+  { href: "#science", label: "The science" },
   { href: "#faq", label: "FAQ" },
 ];
