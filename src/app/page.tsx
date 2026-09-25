@@ -97,11 +97,14 @@ function Hero() {
           {specs.map((s) => (
             <div className="spec" key={s.label}>
               <dt className="mono">{s.label}</dt>
-              <dd>{s.value}</dd>
+              <dd>
+                {s.value}
+                <span>{s.detail}</span>
+              </dd>
             </div>
           ))}
         </dl>
-        <p className="partner-line mono">
+        <p className="partner-line">
           <span>
             {partners.organiser.role} <strong>{partners.organiser.name}</strong>
           </span>

@@ -86,11 +86,32 @@ export type Tag = "Private" | "Group" | "Your choice" | "Where suitable" | "Free
 export type Item = { label: string; tag?: Tag };
 export type Pillar = { key: string; code: string; title: string; domain: string; summary: string; details: Item[] };
 
+/**
+ * The at-a-glance strip under the hero. Written for a busy executive deciding
+ * whether this is worth a weekend: what it costs in time, what they get, who
+ * is behind it, and how private it is.
+ */
 export const specs = [
-  { label: "Format", value: "3 days · 2 nights" },
-  { label: "Group", value: "15–20 guests" },
-  { label: "Domains", value: "4, research-informed" },
-  { label: "After", value: "20-day follow-through" },
+  {
+    label: "Time away",
+    value: "Friday to Sunday",
+    detail: "A short ferry from Singapore",
+  },
+  {
+    label: "You leave with",
+    value: "Your baseline and a plan",
+    detail: "Private cognitive baseline, two chosen habits, 20 days of support",
+  },
+  {
+    label: "Guided by",
+    value: "Gray Matter Solutions",
+    detail: "Brain health science and clinician-guided context",
+  },
+  {
+    label: "Group",
+    value: "15–20 executives",
+    detail: "Small by design. Your results stay private",
+  },
 ];
 
 export const science = {
