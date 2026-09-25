@@ -69,7 +69,7 @@ export const seo = {
 export const hero = {
   headline: "Stay sharp for the *decades ahead.*",
   lede: "One weekend. Find out where your brain health stands, and leave with a simple plan to protect it.",
-  badge: "Doctor-led · Science-backed",
+  badge: "Doctor-led. Science-backed.",
   stats: [
     { value: "1 weekend", label: "Fri to Sun, near Singapore" },
     { value: "Sunday", label: "Your results, explained" },
@@ -78,7 +78,7 @@ export const hero = {
 };
 
 export const problem = {
-  heading: "You track your steps, sleep and money. *When did you last check your brain?*",
+  heading: "You track your steps, sleep and money. When did you last check your brain?",
   forWho: "For founders, leaders and senior professionals who can't afford to lose their edge.",
   points: ["Focus fades by mid-afternoon", "You wake up tired", "Coffee does the heavy lifting", "You want to stay sharp for decades"],
 };
@@ -119,6 +119,28 @@ export const areas: Pillar[] = [
  * PLACEHOLDERS: anything in [square brackets] renders highlighted on the page
  * until it is replaced with confirmed, approved details.
  */
+/** DRAFT: Adnan to edit into his own words before launch. */
+export const note = {
+  heading: "Why we built Clarity.",
+  paragraphs: [
+    "Most of us plan our careers, our money and our retirement in detail. Very few of us have a plan for the brain we'll need to enjoy any of it.",
+    "We kept meeting sharp, successful people who could feel their focus slipping and didn't know where to start. The advice they found was either vague or alarming.",
+    "So we built the weekend we wanted for ourselves. Real science, explained simply, somewhere that makes you slow down. You leave knowing where you stand and what to do next.",
+    "If that sounds like you, I'd love to meet you in November.",
+  ],
+  signature: "Adnan",
+  name: "Adnan Azam Mohammed",
+  role: "Brain Health Expert, Clarity",
+  photo: null as string | null,
+};
+
+export const expertQuote = {
+  quote: "[A short quote from Dr. Stephen Tong on why brain health matters in midlife, in his own words.]",
+  name: "Dr. Stephen Tong",
+  role: "Clinical Lead",
+  photo: null as string | null,
+};
+
 export const guides = {
   heading: "Who's guiding you.",
   people: [
@@ -166,7 +188,7 @@ export const weekend = {
 };
 
 export const moments = {
-  heading: "Unhurried. *On purpose.*",
+  heading: "Unhurried, on purpose.",
   items: [
     { key: "walk", title: "Sunrise walks", tone: "dawn", src: null as string | null, alt: "Guests walking together along the shore at sunrise" },
     { key: "table", title: "Long lunches", tone: "clay", src: null as string | null, alt: "Guests sharing plant-rich dishes at a long table" },

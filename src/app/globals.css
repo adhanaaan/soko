@@ -3213,3 +3213,140 @@ h2 em {
 #audience .split > div > h2 {
   font-size: var(--step-3);
 }
+
+/* ---------------------------------------------------------------------------
+   Human layer: fewer "template" tells, a real voice
+   --------------------------------------------------------------------------- */
+/* Labels in plain sentence case instead of monospace capitals */
+.mono,
+.tag {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.mono {
+  font-size: 0.82rem;
+}
+
+.tile-label {
+  font-size: 0.8rem;
+}
+
+/* Hero badge: a quiet line, not a glass pill */
+.hero-badge.on-dark {
+  padding: 0;
+  border: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.95rem;
+}
+
+/* Promises: plain sentence, no tick-list */
+.promises li::before {
+  content: "·";
+  color: var(--ink-3);
+}
+
+.promises li:first-child::before {
+  content: none;
+}
+
+/* Expert pull quote */
+.pull-quote {
+  margin: clamp(2.5rem, 2rem + 3vw, 4.5rem) 0 0;
+  padding-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  border-top: 1px solid var(--line);
+  max-width: 52rem;
+}
+
+.pull-quote blockquote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.pull-quote blockquote::before {
+  content: "\201C";
+}
+
+.pull-quote blockquote::after {
+  content: "\201D";
+}
+
+.pull-quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.pull-quote figcaption span:last-child {
+  display: grid;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+.pull-quote strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pq-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--warm);
+  color: var(--ink-3);
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* Founder note */
+.note-section {
+  background: var(--warm);
+}
+
+.note {
+  max-width: 38rem;
+  margin-inline: auto;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.note h2 {
+  font-size: var(--step-3);
+  margin-bottom: 0.5rem;
+}
+
+.note p {
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.signature {
+  margin-top: 0.75rem;
+  font-family: var(--font-hand), cursive;
+  font-size: 3.4rem !important;
+  line-height: 1 !important;
+  color: var(--forest) !important;
+}
+
+.note-by {
+  display: grid;
+  font-size: 0.92rem !important;
+  color: var(--ink-2) !important;
+}
+
+.note-by strong {
+  color: var(--ink);
+  font-weight: 600;
+}

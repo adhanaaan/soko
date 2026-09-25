@@ -87,7 +87,14 @@ const tileBg: Record<string, [string, string]> = {
   risks: ["#EBD7C0", "#C98E70"],
 };
 
-/** Image-style tiles for the four FINGER areas. */
+const blobs: Record<string, [string, number, number, number][]> = {
+  move: [["#9CAF79", 120, 140, 170], ["#E9C9AE", 300, 110, 110], ["#3E5A4B", 260, 380, 200], ["#F4C9A4", 90, 420, 90]],
+  eat: [["#F4C9A4", 110, 150, 150], ["#9CAF79", 300, 220, 130], ["#9E5A40", 170, 400, 190], ["#FBF1E8", 320, 420, 80]],
+  think: [["#506C50", 130, 160, 180], ["#9CAF79", 290, 280, 120], ["#E5D5BC", 180, 420, 90], ["#1B2B25", 330, 90, 150]],
+  risks: [["#BF765A", 150, 170, 150], ["#F7E1CC", 300, 300, 170], ["#E9C9AE", 90, 410, 120], ["#9E5A40", 320, 90, 70]],
+};
+
+/** Soft, out-of-focus light for the four FINGER tiles, until photos arrive. */
 export function AreaScene({ area }: { area: string }) {
   const [a, b] = tileBg[area] ?? tileBg.move;
   const id = `as-${area}`;
@@ -98,87 +105,17 @@ export function AreaScene({ area }: { area: string }) {
           <stop offset="0" stopColor={a} />
           <stop offset="1" stopColor={b} />
         </linearGradient>
-        <radialGradient id={`${id}-glow`} cx="0.7" cy="0.25" r="0.7">
-          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
-        </radialGradient>
-        <Grain id={`${id}-grain`} opacity={0.12} />
+        <filter id={`${id}-soft`} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="46" />
+        </filter>
+        <Grain id={`${id}-grain`} opacity={0.14} />
       </defs>
       <rect width="400" height="500" fill={`url(#${id}-bg)`} />
-      <rect width="400" height="500" fill={`url(#${id}-glow)`} />
-
-      {area === "move" && (
-        <g fill="none" strokeLinecap="round">
-          {Array.from({ length: 9 }, (_, i) => (
-            <path
-              key={i}
-              d={`M -20 ${250 + i * 18} C 90 ${170 + i * 22}, 230 ${360 + i * 8}, 420 ${230 + i * 20}`}
-              stroke="#E6EDD9"
-              strokeOpacity={0.12 + i * 0.07}
-              strokeWidth={1.5 + i * 0.35}
-            />
-          ))}
-          <circle cx="300" cy="120" r="34" fill="#F4C9A4" fillOpacity="0.9" stroke="none" />
-        </g>
-      )}
-
-      {area === "eat" && (
-        <g>
-          {[
-            [130, 180, 78],
-            [290, 150, 56],
-            [260, 330, 84],
-            [110, 380, 50],
-          ].map(([x, y, r], i) => (
-            <g key={i}>
-              <circle cx={x} cy={y + 6} r={r} fill="#6B3A28" opacity="0.25" />
-              <circle cx={x} cy={y} r={r} fill="#FBF1E8" />
-              <circle cx={x} cy={y} r={r * 0.7} fill={["#9CAF79", "#E5D5BC", "#506C50", "#BF765A"][i]} />
-              <circle cx={x - r * 0.2} cy={y - r * 0.15} r={r * 0.22} fill={["#506C50", "#BF765A", "#9CAF79", "#F4C9A4"][i]} />
-              <circle cx={x + r * 0.25} cy={y + r * 0.2} r={r * 0.14} fill="#FBF1E8" opacity="0.8" />
-            </g>
-          ))}
-        </g>
-      )}
-
-      {area === "think" && (
-        <g>
-          {(() => {
-            const nodes = [
-              [80, 120], [190, 90], [310, 140], [120, 230], [240, 210], [340, 270],
-              [70, 350], [180, 320], [290, 380], [150, 440], [330, 450], [230, 470],
-            ];
-            const links = [
-              [0, 1], [1, 2], [0, 3], [1, 4], [2, 4], [2, 5], [3, 4], [4, 5], [3, 6], [3, 7],
-              [4, 7], [5, 8], [7, 8], [6, 9], [7, 9], [8, 10], [9, 11], [10, 11], [8, 11],
-            ];
-            return (
-              <>
-                {links.map(([p, q], i) => (
-                  <line key={i} x1={nodes[p][0]} y1={nodes[p][1]} x2={nodes[q][0]} y2={nodes[q][1]} stroke="#9CAF79" strokeOpacity="0.45" strokeWidth="1.4" />
-                ))}
-                {nodes.map(([x, y], i) => (
-                  <g key={i}>
-                    <circle cx={x} cy={y} r={i % 4 === 0 ? 16 : 10} fill="#9CAF79" opacity="0.18" />
-                    <circle cx={x} cy={y} r={i % 4 === 0 ? 6 : 4} fill={i % 5 === 0 ? "#F4C9A4" : "#E6EDD9"} />
-                  </g>
-                ))}
-              </>
-            );
-          })()}
-        </g>
-      )}
-
-      {area === "risks" && (
-        <g fill="none">
-          {[150, 115, 80, 45].map((r, i) => (
-            <circle key={r} cx="200" cy="230" r={r} stroke="#9E5A40" strokeOpacity={0.18 + i * 0.12} strokeWidth="1.5" />
-          ))}
-          <circle cx="200" cy="230" r="22" fill="#9E5A40" fillOpacity="0.85" />
-          <path d="M 20 380 H 130 L 150 350 L 175 420 L 200 300 L 225 410 L 245 380 H 380" stroke="#263B34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-      )}
-
+      <g filter={`url(#${id}-soft)`}>
+        {(blobs[area] ?? blobs.move).map(([c, x, y, r], i) => (
+          <circle key={i} cx={x} cy={y} r={r} fill={c} opacity="0.85" />
+        ))}
+      </g>
       <rect width="400" height="500" filter={`url(#${id}-grain)`} />
     </svg>
   );

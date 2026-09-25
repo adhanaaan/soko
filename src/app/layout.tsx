@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Mrs_Saint_Delafield } from "next/font/google";
 import { event, seo } from "@/content/site";
 import "./globals.css";
 
@@ -14,6 +14,13 @@ const serif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-instrument",
+  display: "swap",
+});
+
+const hand = Mrs_Saint_Delafield({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -75,7 +82,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-SG" className={`${geist.variable} ${geistMono.variable} ${serif.variable}`} suppressHydrationWarning>
+    <html lang="en-SG" className={`${geist.variable} ${geistMono.variable} ${serif.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
         {/* Marks JS as available so collapsed lists can hide on phones; without JS everything stays visible. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

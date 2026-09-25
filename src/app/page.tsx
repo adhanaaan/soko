@@ -11,8 +11,10 @@ import {
   event,
   faq,
   footer,
+  expertQuote,
   guides,
   measures,
+  note,
   hero,
   images,
   moments,
@@ -41,6 +43,7 @@ export default function Home() {
         <Science />
         <Measures />
         <Guides />
+        <Note />
         <Faq />
         <Signup />
       </main>
@@ -296,6 +299,40 @@ function Guides() {
             </li>
           ))}
         </ul>
+        <figure className="pull-quote">
+          <blockquote>{rich(expertQuote.quote)}</blockquote>
+          <figcaption>
+            <span className="pq-avatar" aria-hidden>
+              ST
+            </span>
+            <span>
+              <strong>{expertQuote.name}</strong>
+              {expertQuote.role}
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
+function Note() {
+  return (
+    <section className="section note-section" id="note" aria-labelledby="note-title">
+      <div className="wrap">
+        <article className="note">
+          <h2 id="note-title">{note.heading}</h2>
+          {note.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+          <p className="signature" aria-hidden>
+            {note.signature}
+          </p>
+          <p className="note-by">
+            <strong>{note.name}</strong>
+            {note.role}
+          </p>
+        </article>
       </div>
     </section>
   );

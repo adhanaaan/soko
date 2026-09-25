@@ -85,7 +85,9 @@ shows highlighted on the live page. Search the file for `[` and replace each
 one: clinician names, titles, bios and photos (`guides`), what each
 assessment measures (`measures`), ferry times (`weekend.timing`), villa
 pairing (FAQ), the group-booking line (`signup.corporate`), the guarantee
-(`offer.guarantee`) and the bookings-open date (`offer.scarcity`).
+(`offer.guarantee`), the bookings-open date (`offer.scarcity`) and Dr. Tong's
+quote (`expertQuote`). The founder note (`note`) is a draft for Adnan to
+rewrite in his own words.
 
 
 Content awaiting confirmation (all in `src/content/site.ts`):
