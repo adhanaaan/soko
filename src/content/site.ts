@@ -72,6 +72,23 @@ export const hero = {
   lede: "Clarity brings science, movement, food and good company together in a small-group executive brain health retreat.",
 };
 
+export const audience = {
+  kicker: "Who it's for",
+  heading: "Built for people who carry a lot, and want to keep their edge.",
+  intro: "Clarity is designed for a small group of executives and professionals, broadly aged 40 to 60. Inclusive by design; no fitness level required.",
+  forYou: [
+    "You lead a demanding life and want to protect your long-term brain health",
+    "You'd rather try the habits than sit through another talk",
+    "You want clear, private insight, explained without alarm",
+    "You'd value a weekend with a small group of peers",
+  ],
+  notFor: [
+    "You're looking for a diagnosis or medical treatment",
+    "You want an intensive fitness bootcamp",
+    "You want a spa-only break",
+  ],
+};
+
 export const idea = {
   kicker: "The idea",
   line: "Understand more. Do more. Keep going together.",
@@ -319,6 +336,46 @@ export const after = {
   channelNote: "Delivered by email and message; the exact format will be confirmed before bookings open.",
 };
 
+export const included = {
+  kicker: "What's included",
+  heading: "What the package covers, from first email to day 20.",
+  status: "Proposed inclusions · final package confirmed before bookings open",
+  phases: [
+    {
+      when: "Before you arrive",
+      title: "Prepared, not overloaded",
+      items: [
+        { label: "Confirmed programme and travel details" },
+        { label: "A short suitability check for CGM", tag: "Where suitable" },
+        { label: "One point of contact for questions" },
+      ],
+    },
+    {
+      when: "On the weekend",
+      title: "Two nights at Montigo Resorts Nongsa",
+      items: [
+        { label: "Shared two-bedroom villa, two guests per villa" },
+        { label: "Meals throughout your stay" },
+        { label: "The full movement, food and brain health programme", tag: "Group" },
+        { label: `Your ${partners.assessmentName} cognitive baseline`, tag: "Private" },
+        { label: "Clinician-guided health context", tag: "Private" },
+        { label: "Continuous glucose monitoring", tag: "Where suitable" },
+      ],
+    },
+    {
+      when: "The 20 days after",
+      title: "Support while habits take hold",
+      items: [
+        { label: "A plain-language take-home summary", tag: "Take-home" },
+        { label: "Short prompts tied to your two habits" },
+        { label: "Two group check-ins", tag: "Group" },
+        { label: "An invitation to a Soko activity in Singapore" },
+      ],
+    },
+  ] satisfies { when: string; title: string; items: Item[] }[],
+  toConfirm: ["Ferry and resort transfers", "Private-room options", "Final pricing"],
+};
+
 export const faq = [
   {
     q: "Who is this for?",
@@ -338,7 +395,7 @@ export const faq = [
   },
   {
     q: "What is included?",
-    a: "The proposed package covers accommodation, meals, the full programme, your private cognitive baseline, health context sessions and the 20-day follow-through. Final inclusions — including transport and CGM — will be confirmed before bookings open.",
+    a: "See \"What's included\" above for the proposed package: accommodation, meals, the full programme, your private baseline, health context and the 20-day follow-through. Transport, private-room options and pricing will be confirmed before bookings open.",
   },
   {
     q: "How do I join?",
@@ -380,9 +437,9 @@ export const images = {
 } satisfies Record<string, ImageSlot>;
 
 export const nav = [
-  { href: "#idea", label: "The idea" },
+  { href: "#audience", label: "Who it's for" },
   { href: "#programme", label: "Programme" },
-  { href: "#research", label: "Research" },
   { href: "#weekend", label: "The weekend" },
+  { href: "#included", label: "What's included" },
   { href: "#faq", label: "FAQ" },
 ];

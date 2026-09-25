@@ -4,6 +4,8 @@ import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
   after,
+  audience,
+  included,
   contact,
   cta,
   event,
@@ -33,10 +35,12 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <Audience />
         <Idea />
         <Programme />
         <Research />
         <Weekend />
+        <Included />
         <Insight />
         <People />
         <After />
@@ -120,13 +124,45 @@ function Hero() {
   );
 }
 
+function Audience() {
+  return (
+    <section className="section" id="audience" aria-labelledby="audience-title">
+      <div className="wrap">
+        <div className="section-head">
+          <Index n="01" label={audience.kicker} />
+          <h2 id="audience-title">{audience.heading}</h2>
+          <p>{audience.intro}</p>
+        </div>
+        <div className="fit-grid reveal">
+          <div className="fit">
+            <h3 className="mono">Clarity is for you if</h3>
+            <ul>
+              {audience.forYou.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="fit not">
+            <h3 className="mono">It&apos;s probably not for you if</h3>
+            <ul>
+              {audience.notFor.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Idea() {
   const [a, b, c] = idea.line.split(". ").map((s) => s.replace(/\.$/, "") + ".");
   return (
     <section className="section" id="idea" aria-labelledby="idea-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="01" label={idea.kicker} />
+          <Index n="02" label={idea.kicker} />
         </div>
         <div className="idea-grid">
           <h2 className="idea-line reveal" id="idea-title">
@@ -151,7 +187,7 @@ function Programme() {
     <section className="section" id="programme" aria-labelledby="programme-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="02" label={science.kicker} />
+          <Index n="03" label={science.kicker} />
           <h2 id="programme-title">{science.heading}</h2>
           <p>{science.intro}</p>
         </div>
@@ -204,7 +240,7 @@ function Research() {
     <section className="section" id="research" aria-labelledby="research-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="03" label={research.kicker} />
+          <Index n="04" label={research.kicker} />
           <h2 id="research-title">{research.heading}</h2>
           <p>{research.intro}</p>
         </div>
@@ -265,7 +301,7 @@ function Weekend() {
     <section className="section weekend" id="weekend" aria-labelledby="weekend-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="04" label={weekend.kicker} />
+          <Index n="05" label={weekend.kicker} />
           <h2 id="weekend-title">{weekend.heading}</h2>
           <p className="status-pill mono">{weekend.status}</p>
         </div>
@@ -303,12 +339,55 @@ function Weekend() {
   );
 }
 
+function Included() {
+  return (
+    <section className="section" id="included" aria-labelledby="included-title">
+      <div className="wrap">
+        <div className="section-head">
+          <Index n="06" label={included.kicker} />
+          <h2 id="included-title">{included.heading}</h2>
+          <p className="status-pill mono">{included.status}</p>
+        </div>
+        <ol className="phases reveal">
+          {included.phases.map((ph, i) => (
+            <li className="phase" key={ph.when}>
+              <p className="phase-when mono">
+                <b>{String(i + 1).padStart(2, "0")}</b> {ph.when}
+              </p>
+              <h3>{ph.title}</h3>
+              <ul>
+                {ph.items.map((it) => (
+                  <li key={it.label}>
+                    <span className="check-mark" aria-hidden>
+                      ✓
+                    </span>
+                    <span>{it.label}</span>
+                    {it.tag && <TagChip tag={it.tag} />}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+        <p className="to-confirm">
+          <span className="mono">To be confirmed</span>
+          {included.toConfirm.map((t) => (
+            <span className="tag" key={t}>
+              {t}
+            </span>
+          ))}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Insight() {
   return (
     <section className="section dark" id="insight" aria-labelledby="insight-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="05" label={insight.kicker} />
+          <Index n="07" label={insight.kicker} />
           <h2 id="insight-title">{insight.heading}</h2>
         </div>
         <ul className="insight-grid">
@@ -342,7 +421,7 @@ function People() {
     <section className="section" id="people" aria-labelledby="people-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="06" label={people.kicker} />
+          <Index n="08" label={people.kicker} />
           <h2 id="people-title">{people.heading}</h2>
         </div>
         <div className="people-grid">
@@ -381,7 +460,7 @@ function After() {
     <section className="section" id="after" aria-labelledby="after-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="07" label={after.kicker} />
+          <Index n="09" label={after.kicker} />
           <h2 id="after-title">{after.heading}</h2>
           <p>{after.intro}</p>
         </div>
@@ -417,7 +496,7 @@ function Faq() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="08" label="Questions" />
+          <Index n="10" label="Questions" />
         </div>
         <div className="faq-grid">
           <div className="faq-side">
@@ -479,7 +558,7 @@ function Signup() {
     <section className="signup dark" id="priority-list" aria-labelledby="signup-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="09" label={signup.kicker} />
+          <Index n="11" label={signup.kicker} />
         </div>
         <div className="signup-grid">
           <div className="signup-copy">
