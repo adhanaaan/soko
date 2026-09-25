@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { SignupForm } from "@/components/SignupForm";
 import {
   moments,
-  after,
   audience,
   included,
   contact,
@@ -13,7 +12,6 @@ import {
   faq,
   footer,
   hero,
-  idea,
   images,
   insight,
   partners,
@@ -37,15 +35,13 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Audience />
-        <Idea />
-        <Moments />
-        <Programme />
-        <Research />
-        <Weekend />
         <Included />
+        <Weekend />
+        <Programme />
+        <Moments />
         <Insight />
+        <Research />
         <People />
-        <After />
         <Faq />
         <Signup />
       </main>
@@ -93,7 +89,7 @@ function Hero() {
               <a className="btn btn-accent" href="#priority-list">
                 {cta.primary} <span className="arrow" aria-hidden>→</span>
               </a>
-              <a className="btn btn-ghost" href="#programme">
+              <a className="btn btn-ghost" href="#included">
                 {cta.secondary}
               </a>
             </div>
@@ -167,31 +163,6 @@ function Audience() {
   );
 }
 
-function Idea() {
-  const [a, b, c] = idea.line.split(". ").map((s) => s.replace(/\.$/, "") + ".");
-  return (
-    <section className="section" id="idea" aria-labelledby="idea-title">
-      <div className="wrap">
-        <div className="section-head">
-          <Index n="02" label={idea.kicker} />
-        </div>
-        <div className="idea-grid">
-          <h2 className="idea-line reveal" id="idea-title">
-            <span>{a}</span>
-            <span>{b}</span>
-            <span>{c}</span>
-          </h2>
-          <div className="idea-body reveal">
-            {idea.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Programme() {
   const tags: Tag[] = ["Private", "Group", "Your choice", "Where suitable"];
   return (
@@ -251,7 +222,7 @@ function Research() {
     <section className="section" id="research" aria-labelledby="research-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="05" label={research.kicker} />
+          <Index n="07" label={research.kicker} />
           <h2 id="research-title">{rich(research.heading)}</h2>
           <p>{research.intro}</p>
         </div>
@@ -312,7 +283,7 @@ function Weekend() {
     <section className="section weekend" id="weekend" aria-labelledby="weekend-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="06" label={weekend.kicker} />
+          <Index n="03" label={weekend.kicker} />
           <h2 id="weekend-title">{rich(weekend.heading)}</h2>
           <p className="status-pill mono">{weekend.status}</p>
         </div>
@@ -355,7 +326,7 @@ function Included() {
     <section className="section" id="included" aria-labelledby="included-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="07" label={included.kicker} />
+          <Index n="02" label={included.kicker} />
           <h2 id="included-title">{rich(included.heading)}</h2>
           <p className="status-pill mono">{included.status}</p>
         </div>
@@ -398,7 +369,7 @@ function Moments() {
     <section className="section moments" id="moments" aria-labelledby="moments-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="03" label={moments.kicker} />
+          <Index n="05" label={moments.kicker} />
           <h2 id="moments-title">{rich(moments.heading)}</h2>
           <p>{moments.intro}</p>
         </div>
@@ -423,7 +394,7 @@ function Insight() {
     <section className="section dark" id="insight" aria-labelledby="insight-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="08" label={insight.kicker} />
+          <Index n="06" label={insight.kicker} />
           <h2 id="insight-title">{rich(insight.heading)}</h2>
         </div>
         <ul className="insight-grid">
@@ -457,7 +428,7 @@ function People() {
     <section className="section" id="people" aria-labelledby="people-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="09" label={people.kicker} />
+          <Index n="08" label={people.kicker} />
           <h2 id="people-title">{rich(people.heading)}</h2>
         </div>
         <div className="people-grid">
@@ -490,49 +461,12 @@ function People() {
   );
 }
 
-function After() {
-  const days = event.followThroughDays;
-  return (
-    <section className="section" id="after" aria-labelledby="after-title">
-      <div className="wrap">
-        <div className="section-head">
-          <Index n="10" label={after.kicker} />
-          <h2 id="after-title">{rich(after.heading)}</h2>
-          <p>{after.intro}</p>
-        </div>
-        <div className="follow reveal">
-          <div className="follow-scale" aria-hidden>
-            {Array.from({ length: days }, (_, i) => (
-              <span key={i} />
-            ))}
-          </div>
-          <p className="follow-axis mono">
-            <span>D01 · Home</span>
-            <span>D10</span>
-            <span>D{days}</span>
-          </p>
-          <ol className="steps">
-            {after.steps.map((s, i) => (
-              <li key={s.label}>
-                <span className="mono">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{s.label}</h3>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-        <p className="channel-note mono">{after.channelNote}</p>
-      </div>
-    </section>
-  );
-}
-
 function Faq() {
   return (
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="11" label="Questions" />
+          <Index n="09" label="Questions" />
         </div>
         <div className="faq-grid">
           <div className="faq-side">
@@ -594,7 +528,7 @@ function Signup() {
     <section className="signup dark" id="priority-list" aria-labelledby="signup-title">
       <div className="wrap">
         <div className="section-head">
-          <Index n="12" label={signup.kicker} />
+          <Index n="10" label={signup.kicker} />
         </div>
         <div className="signup-grid">
           <div className="signup-copy">
