@@ -85,16 +85,65 @@ const tileBg: Record<string, [string, string]> = {
   eat: ["#E3A488", "#9E5A40"],
   think: ["#2F4A40", "#14201B"],
   risks: ["#EBD7C0", "#C98E70"],
+  // moments
+  dawn: ["#F4D9C2", "#C98E70"],
+  clay: ["#EFD3BF", "#B8765C"],
+  leaf: ["#DDE6CF", "#7E9868"],
+  dusk: ["#D9DDE3", "#5C6E68"],
 };
 
 const blobs: Record<string, [string, number, number, number][]> = {
-  move: [["#9CAF79", 120, 140, 170], ["#E9C9AE", 300, 110, 110], ["#3E5A4B", 260, 380, 200], ["#F4C9A4", 90, 420, 90]],
-  eat: [["#F4C9A4", 110, 150, 150], ["#9CAF79", 300, 220, 130], ["#9E5A40", 170, 400, 190], ["#FBF1E8", 320, 420, 80]],
-  think: [["#506C50", 130, 160, 180], ["#9CAF79", 290, 280, 120], ["#E5D5BC", 180, 420, 90], ["#1B2B25", 330, 90, 150]],
-  risks: [["#BF765A", 150, 170, 150], ["#F7E1CC", 300, 300, 170], ["#E9C9AE", 90, 410, 120], ["#9E5A40", 320, 90, 70]],
+  move: [
+    ["#9CAF79", 120, 140, 170],
+    ["#E9C9AE", 300, 110, 110],
+    ["#3E5A4B", 260, 380, 200],
+    ["#F4C9A4", 90, 420, 90],
+  ],
+  eat: [
+    ["#F4C9A4", 110, 150, 150],
+    ["#9CAF79", 300, 220, 130],
+    ["#9E5A40", 170, 400, 190],
+    ["#FBF1E8", 320, 420, 80],
+  ],
+  think: [
+    ["#506C50", 130, 160, 180],
+    ["#9CAF79", 290, 280, 120],
+    ["#E5D5BC", 180, 420, 90],
+    ["#1B2B25", 330, 90, 150],
+  ],
+  risks: [
+    ["#BF765A", 150, 170, 150],
+    ["#F7E1CC", 300, 300, 170],
+    ["#E9C9AE", 90, 410, 120],
+    ["#9E5A40", 320, 90, 70],
+  ],
+  dawn: [
+    ["#FBE3CB", 200, 200, 120],
+    ["#E9B08B", 110, 360, 150],
+    ["#F7F3E9", 310, 110, 90],
+    ["#9C8A6E", 300, 440, 110],
+  ],
+  clay: [
+    ["#FBF1E8", 130, 150, 120],
+    ["#9CAF79", 300, 250, 90],
+    ["#9E5A40", 180, 420, 170],
+    ["#F4C9A4", 320, 90, 90],
+  ],
+  leaf: [
+    ["#F7F3E9", 150, 140, 130],
+    ["#506C50", 300, 330, 150],
+    ["#E5D5BC", 90, 430, 110],
+    ["#9CAF79", 320, 110, 90],
+  ],
+  dusk: [
+    ["#F4C9A4", 120, 180, 110],
+    ["#9CAF79", 280, 230, 110],
+    ["#263B34", 200, 440, 170],
+    ["#F7F3E9", 320, 90, 70],
+  ],
 };
 
-/** Soft, out-of-focus light for the four FINGER tiles, until photos arrive. */
+/** Soft, out-of-focus light for the FINGER and moments tiles, until photos arrive. */
 export function AreaScene({ area }: { area: string }) {
   const [a, b] = tileBg[area] ?? tileBg.move;
   const id = `as-${area}`;
@@ -145,51 +194,56 @@ export function VillaScene() {
         <filter id="vs-blur" x="-20%" y="-50%" width="140%" height="200%">
           <feGaussianBlur stdDeviation="18" />
         </filter>
-        <Grain id="vs-grain" opacity={0.07} />
+        <filter id="vs-soft" x="-5%" y="-5%" width="110%" height="110%">
+          <feGaussianBlur stdDeviation="5" />
+        </filter>
+        <Grain id="vs-grain" opacity={0.1} />
       </defs>
-      <rect width="1600" height="800" fill="url(#vs-sky)" />
-      <g filter="url(#vs-blur)" opacity="0.7">
-        <ellipse cx="380" cy="170" rx="300" ry="30" fill="#FFFFFF" />
-        <ellipse cx="1180" cy="120" rx="260" ry="24" fill="#FFFFFF" />
-      </g>
-      {/* sea */}
-      <rect y="360" width="1600" height="440" fill="url(#vs-sea)" />
-      <rect y="358" width="1600" height="3" fill="#F7F3E9" opacity="0.7" />
-      <g stroke="#F7F3E9" strokeOpacity="0.25" strokeWidth="2" strokeLinecap="round">
-        <line x1="120" y1="400" x2="420" y2="400" />
-        <line x1="620" y1="430" x2="980" y2="430" />
-        <line x1="1200" y1="395" x2="1480" y2="395" />
-      </g>
-      {/* whitewashed villas, stepping down the hill on the right */}
-      <g>
-        <rect x="1010" y="250" width="300" height="190" fill="url(#vs-wall)" />
-        <rect x="1010" y="236" width="316" height="16" fill="#FFFFFF" />
-        <rect x="1050" y="300" width="110" height="100" fill="#3E4F4B" opacity="0.55" />
-        <rect x="1180" y="300" width="90" height="100" fill="#3E4F4B" opacity="0.4" />
-        <rect x="1290" y="330" width="330" height="170" fill="url(#vs-wall)" />
-        <rect x="1280" y="316" width="340" height="16" fill="#FFFFFF" />
-        <rect x="1330" y="380" width="140" height="95" fill="#3E4F4B" opacity="0.5" />
-        <rect x="1490" y="380" width="110" height="95" fill="#3E4F4B" opacity="0.35" />
-      </g>
-      {/* timber deck and private pool */}
-      <path d="M0 560 L1600 520 L1600 800 L0 800 Z" fill="#C9A27E" />
-      <g stroke="#A9825F" strokeOpacity="0.5" strokeWidth="2">
-        {Array.from({ length: 9 }, (_, i) => (
-          <line key={i} x1="0" y1={590 + i * 26} x2="1600" y2={550 + i * 28} />
-        ))}
-      </g>
-      <path d="M220 610 L1080 588 L1120 740 L180 770 Z" fill="url(#vs-pool)" />
-      <path d="M220 610 L1080 588 L1084 600 L222 622 Z" fill="#FFFFFF" opacity="0.7" />
-      <g stroke="#FFFFFF" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round">
-        <path d="M320 660 q40 -8 80 0 t80 0" fill="none" />
-        <path d="M640 700 q40 -8 80 0 t80 0" fill="none" />
-      </g>
-      {/* lounger */}
-      <g transform="translate(1250 600)">
-        <rect x="0" y="40" width="220" height="18" rx="6" fill="#F7F3E9" />
-        <path d="M150 40 L215 0 L225 14 L170 44 Z" fill="#F7F3E9" />
-        <rect x="14" y="58" width="8" height="30" fill="#8C6A4E" />
-        <rect x="196" y="58" width="8" height="30" fill="#8C6A4E" />
+      <g filter="url(#vs-soft)">
+        <rect width="1600" height="800" fill="url(#vs-sky)" />
+        <g filter="url(#vs-blur)" opacity="0.7">
+          <ellipse cx="380" cy="170" rx="300" ry="30" fill="#FFFFFF" />
+          <ellipse cx="1180" cy="120" rx="260" ry="24" fill="#FFFFFF" />
+        </g>
+        {/* sea */}
+        <rect y="360" width="1600" height="440" fill="url(#vs-sea)" />
+        <rect y="358" width="1600" height="3" fill="#F7F3E9" opacity="0.7" />
+        <g stroke="#F7F3E9" strokeOpacity="0.25" strokeWidth="2" strokeLinecap="round">
+          <line x1="120" y1="400" x2="420" y2="400" />
+          <line x1="620" y1="430" x2="980" y2="430" />
+          <line x1="1200" y1="395" x2="1480" y2="395" />
+        </g>
+        {/* whitewashed villas, stepping down the hill on the right */}
+        <g>
+          <rect x="1010" y="250" width="300" height="190" fill="url(#vs-wall)" />
+          <rect x="1010" y="236" width="316" height="16" fill="#FFFFFF" />
+          <rect x="1050" y="300" width="110" height="100" fill="#3E4F4B" opacity="0.55" />
+          <rect x="1180" y="300" width="90" height="100" fill="#3E4F4B" opacity="0.4" />
+          <rect x="1290" y="330" width="330" height="170" fill="url(#vs-wall)" />
+          <rect x="1280" y="316" width="340" height="16" fill="#FFFFFF" />
+          <rect x="1330" y="380" width="140" height="95" fill="#3E4F4B" opacity="0.5" />
+          <rect x="1490" y="380" width="110" height="95" fill="#3E4F4B" opacity="0.35" />
+        </g>
+        {/* timber deck and private pool */}
+        <path d="M0 560 L1600 520 L1600 800 L0 800 Z" fill="#C9A27E" />
+        <g stroke="#A9825F" strokeOpacity="0.5" strokeWidth="2">
+          {Array.from({ length: 9 }, (_, i) => (
+            <line key={i} x1="0" y1={590 + i * 26} x2="1600" y2={550 + i * 28} />
+          ))}
+        </g>
+        <path d="M220 610 L1080 588 L1120 740 L180 770 Z" fill="url(#vs-pool)" />
+        <path d="M220 610 L1080 588 L1084 600 L222 622 Z" fill="#FFFFFF" opacity="0.7" />
+        <g stroke="#FFFFFF" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round">
+          <path d="M320 660 q40 -8 80 0 t80 0" fill="none" />
+          <path d="M640 700 q40 -8 80 0 t80 0" fill="none" />
+        </g>
+        {/* lounger */}
+        <g transform="translate(1250 600)">
+          <rect x="0" y="40" width="220" height="18" rx="6" fill="#F7F3E9" />
+          <path d="M150 40 L215 0 L225 14 L170 44 Z" fill="#F7F3E9" />
+          <rect x="14" y="58" width="8" height="30" fill="#8C6A4E" />
+          <rect x="196" y="58" width="8" height="30" fill="#8C6A4E" />
+        </g>
       </g>
       <rect width="1600" height="800" filter="url(#vs-grain)" />
     </svg>

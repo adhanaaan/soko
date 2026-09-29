@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AreaScene } from "./Scenes";
 import type { ImageSlot, Pillar } from "@/content/site";
 
 const showNotes = process.env.NODE_ENV === "development";
@@ -33,9 +34,7 @@ export function DomainDiagram({ pillars }: { pillars: Pillar[] }) {
   return (
     <svg className="diagram" viewBox="0 0 500 500" role="img" aria-labelledby="diagram-title diagram-desc">
       <title id="diagram-title">The four FINGER trial areas in the Clarity weekend</title>
-      <desc id="diagram-desc">
-        {pillars.map((p) => `${p.title} (${p.finger})`).join(", ")}, arranged around your private baseline.
-      </desc>
+      <desc id="diagram-desc">{pillars.map((p) => `${p.title} (${p.finger})`).join(", ")}, arranged around your private baseline.</desc>
 
       {/* scale ring */}
       <g stroke={C.ink3} strokeOpacity="0.22">
@@ -146,7 +145,12 @@ export function DomainGlyph({ domain, className }: { domain: string; className?:
 /** Line-art stand-in for venue photography. */
 function VenueArt() {
   return (
-    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+    <svg
+      viewBox="0 0 600 340"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+    >
       <defs>
         <pattern id="venue-grid" width="40" height="40" patternUnits="userSpaceOnUse">
           <path d="M40 0H0V40" fill="none" stroke="rgba(20,32,27,0.07)" />
@@ -180,14 +184,7 @@ export function Photo({ slot, sizes, className }: { slot: ImageSlot; sizes: stri
   );
 }
 
-const tones: Record<string, { bg: [string, string]; ink: string; soft: string }> = {
-  dawn: { bg: ["#F7E7D7", "#EBC7A8"], ink: "#BF765A", soft: "#F2D2B6" },
-  clay: { bg: ["#F6E4D8", "#E7B79D"], ink: "#9E5A40", soft: "#FBF1E8" },
-  leaf: { bg: ["#EEF2E6", "#CFDBBB"], ink: "#506C50", soft: "#9CAF79" },
-  dusk: { bg: ["#ECE8F0", "#D6DCE6"], ink: "#263B34", soft: "#BF765A" },
-};
-
-/** Soft, warm stand-in for people photography, one small scene per moment. */
+/** Stand-in for people photography: the same soft-focus light as the other tiles. */
 export function MomentArt({ tone, src, alt }: { tone: string; src: string | null; alt: string }) {
   if (src) {
     return (
@@ -196,76 +193,9 @@ export function MomentArt({ tone, src, alt }: { tone: string; src: string | null
       </div>
     );
   }
-  const t = tones[tone] ?? tones.dawn;
-  const id = `m-${tone}`;
   return (
     <div className="moment-media" aria-hidden>
-      <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id={`${id}-bg`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor={t.bg[0]} />
-            <stop offset="1" stopColor={t.bg[1]} />
-          </linearGradient>
-          <radialGradient id={`${id}-glow`} cx="0.5" cy="0.5" r="0.5">
-            <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.85" />
-            <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <rect width="300" height="400" fill={`url(#${id}-bg)`} />
-        <circle cx="150" cy="150" r="150" fill={`url(#${id}-glow)`} />
-
-        {tone === "dawn" && (
-          <>
-            <circle cx="150" cy="190" r="56" fill={t.ink} fillOpacity="0.85" />
-            <rect x="0" y="190" width="300" height="210" fill="#F7EFE6" />
-            <path d="M0 190 H300" stroke={t.ink} strokeOpacity="0.4" />
-            {[208, 224, 242].map((y, i) => (
-              <path key={y} d={`M${110 + i * 12} ${y} H${190 - i * 12}`} stroke={t.ink} strokeOpacity={0.5 - i * 0.12} strokeWidth="3" strokeLinecap="round" />
-            ))}
-            <path d="M-10 300 C 80 270, 190 320, 310 280" fill="none" stroke={t.ink} strokeOpacity="0.35" strokeWidth="2" strokeDasharray="1 9" strokeLinecap="round" />
-          </>
-        )}
-
-        {tone === "clay" && (
-          <>
-            <rect x="30" y="150" width="240" height="120" rx="60" fill="#FFFFFF" fillOpacity="0.35" />
-            {[
-              [95, 190, 34],
-              [185, 180, 28],
-              [140, 235, 30],
-              [215, 240, 22],
-            ].map(([x, y, r]) => (
-              <g key={`${x}-${y}`}>
-                <circle cx={x} cy={y} r={r} fill={t.soft} />
-                <circle cx={x} cy={y} r={r * 0.62} fill={t.ink} fillOpacity="0.28" />
-              </g>
-            ))}
-            <circle cx="95" cy="190" r="9" fill="#9CAF79" />
-            <circle cx="140" cy="235" r="8" fill="#506C50" fillOpacity="0.7" />
-          </>
-        )}
-
-        {tone === "leaf" && (
-          <>
-            <path d="M150 90 C 215 130, 225 215, 150 265 C 75 215, 85 130, 150 90 Z" fill={t.soft} fillOpacity="0.55" />
-            <path d="M150 110 V 255" stroke={t.ink} strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" />
-            {[150, 180, 210].map((y) => (
-              <path key={y} d={`M150 ${y} q 22 -14 36 -30 M150 ${y} q -22 -14 -36 -30`} fill="none" stroke={t.ink} strokeOpacity="0.35" strokeWidth="1.6" strokeLinecap="round" />
-            ))}
-          </>
-        )}
-
-        {tone === "dusk" && (
-          <>
-            <circle cx="125" cy="185" r="52" fill={t.soft} fillOpacity="0.55" />
-            <circle cx="178" cy="185" r="52" fill="#9CAF79" fillOpacity="0.55" />
-            <circle cx="152" cy="185" r="12" fill="#FFFFFF" fillOpacity="0.9" />
-            <circle cx="232" cy="80" r="14" fill="#FFFFFF" fillOpacity="0.8" />
-          </>
-        )}
-
-        <path d="M0 330 C 90 305, 200 345, 300 318 L300 400 L0 400 Z" fill="#FFFFFF" fillOpacity="0.45" />
-      </svg>
+      <AreaScene area={tone} />
       {showNotes && <span className="photo-note mono">Photo needed</span>}
     </div>
   );

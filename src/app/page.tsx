@@ -13,7 +13,6 @@ import {
   footer,
   expertQuote,
   guides,
-  measures,
   method,
   note,
   hero,
@@ -40,15 +39,14 @@ export default function Home() {
         <Hero />
         <Problem />
         <Method />
-        <Moments />
         <Place />
+        <Moments />
         <Offer />
         <Weekend />
         <Science />
-        <Measures />
         <Guides />
-        <Note />
         <Faq />
+        <Note />
         <Signup />
       </main>
       <Footer />
@@ -75,11 +73,7 @@ function Hero() {
   return (
     <section className="hero-full" id="top" aria-labelledby="hero-title">
       <div className="hero-frame">
-        {images.hero.src ? (
-          <Image className="scene" src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" />
-        ) : (
-          <HeroScene />
-        )}
+        {images.hero.src ? <Image className="scene" src={images.hero.src} alt={images.hero.alt} fill priority sizes="100vw" /> : <HeroScene />}
         <div className="hero-shade" aria-hidden />
         <div className="hero-inner">
           <a className="hero-badge on-dark" href="#method">
@@ -90,7 +84,10 @@ function Hero() {
           <p className="hero-lede">{hero.lede}</p>
           <div className="hero-actions">
             <a className="btn btn-light" href="#priority-list">
-              {cta.primary} <span className="arrow" aria-hidden>→</span>
+              {cta.primary}{" "}
+              <span className="arrow" aria-hidden>
+                →
+              </span>
             </a>
           </div>
           <p className="hero-note">{cta.note}</p>
@@ -167,18 +164,20 @@ function Method() {
           ))}
         </ol>
         <p className="fine">{method.note}</p>
-        <figure className="pull-quote">
-          <blockquote>{rich(expertQuote.quote)}</blockquote>
-          <figcaption>
-            <span className="pq-avatar" aria-hidden>
-              ST
-            </span>
-            <span>
-              <strong>{expertQuote.name}</strong>
-              {expertQuote.role}
-            </span>
-          </figcaption>
-        </figure>
+        {expertQuote.quote && (
+          <figure className="pull-quote">
+            <blockquote>{rich(expertQuote.quote)}</blockquote>
+            <figcaption>
+              <span className="pq-avatar" aria-hidden>
+                ST
+              </span>
+              <span>
+                <strong>{expertQuote.name}</strong>
+                {expertQuote.role}
+              </span>
+            </figcaption>
+          </figure>
+        )}
       </div>
     </section>
   );
@@ -189,7 +188,7 @@ function Offer() {
     <section className="section" id="offer" aria-labelledby="offer-title">
       <div className="wrap">
         <h2 className="title" id="offer-title">
-          {offer.heading}
+          {rich(offer.heading)}
         </h2>
         <ol className="stack">
           {offer.stack.map((o) => (
@@ -207,18 +206,23 @@ function Offer() {
             <li key={p}>{p}</li>
           ))}
         </ul>
-        <div className="guarantee">
-          <span className="guarantee-seal" aria-hidden>
-            ✓
-          </span>
-          <div>
-            <h3>{offer.guarantee.title}</h3>
-            <p>{rich(offer.guarantee.text)}</p>
+        {offer.guarantee.text && (
+          <div className="guarantee">
+            <span className="guarantee-seal" aria-hidden>
+              ✓
+            </span>
+            <div>
+              <h3>{offer.guarantee.title}</h3>
+              <p>{rich(offer.guarantee.text)}</p>
+            </div>
           </div>
-        </div>
+        )}
         <div className="offer-cta">
           <a className="btn btn-accent" href="#priority-list">
-            {cta.primary} <span className="arrow" aria-hidden>→</span>
+            {cta.primary}{" "}
+            <span className="arrow" aria-hidden>
+              →
+            </span>
           </a>
           <p>{rich(offer.scarcity)}</p>
         </div>
@@ -233,7 +237,7 @@ function Weekend() {
     <section className="section" id="weekend" aria-labelledby="weekend-title">
       <div className="wrap">
         <h2 className="title title-tight" id="weekend-title">
-          {weekend.heading}
+          {rich(weekend.heading)}
         </h2>
         <p className="timing">{rich(weekend.timing)}</p>
         <ol className="days3">
@@ -271,6 +275,8 @@ function Weekend() {
 }
 
 function Moments() {
+  // Shown once real photos are in; until then the moments appear as tags under "The place".
+  if (!moments.items.some((m) => m.src)) return null;
   return (
     <section className="section moments" id="moments" aria-labelledby="moments-title">
       <div className="wrap">
@@ -297,11 +303,7 @@ function Place() {
     <section className="section place-section" id="place" aria-labelledby="place-title">
       <div className="wrap">
         <div className="place-frame">
-          {images.place.src ? (
-            <Image className="scene" src={images.place.src} alt={images.place.alt} fill sizes="100vw" />
-          ) : (
-            <VillaScene />
-          )}
+          {images.place.src ? <Image className="scene" src={images.place.src} alt={images.place.alt} fill sizes="100vw" /> : <VillaScene />}
           <p className="place-credit">{place.credit}</p>
         </div>
         <div className="place-body">
@@ -318,6 +320,13 @@ function Place() {
             ))}
           </dl>
         </div>
+        {!moments.items.some((m) => m.src) && (
+          <ul className="place-tags" aria-label={moments.heading}>
+            {moments.items.map((m) => (
+              <li key={m.key}>{m.title}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
@@ -374,7 +383,7 @@ function Guides() {
     <section className="section" id="guides" aria-labelledby="guides-title">
       <div className="wrap">
         <h2 className="title" id="guides-title">
-          {guides.heading}
+          {rich(guides.heading)}
         </h2>
         <ul className="guides">
           {guides.people.map((g, i) => (
@@ -388,7 +397,7 @@ function Guides() {
               </div>
               <h3>{rich(g.name)}</h3>
               <p className="guide-role">{rich(g.role)}</p>
-              <p className="guide-bio">{rich(g.bio)}</p>
+              <p className={g.bio ? "guide-bio" : "guide-bio is-pending"}>{g.bio ? rich(g.bio) : guides.bioPending}</p>
             </li>
           ))}
         </ul>
@@ -419,32 +428,11 @@ function Note() {
   );
 }
 
-function Measures() {
-  return (
-    <section className="section" id="measures" aria-labelledby="measures-title">
-      <div className="wrap split">
-        <h2 id="measures-title">{measures.heading}</h2>
-        <ul className="measures">
-          {measures.items.map((m) => (
-            <li key={m.name}>
-              <div>
-                <h3>{m.name}</h3>
-                <p>{rich(m.what)}</p>
-              </div>
-              <span className="tag">{m.tag}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
 function Faq() {
   return (
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="wrap split">
-        <h2 id="faq-title">Questions.</h2>
+        <h2 id="faq-title">Straight answers.</h2>
         <div className="faq-list">
           {faq.map((item) => (
             <details className="faq-item" key={item.q}>
@@ -485,7 +473,7 @@ function Signup() {
     <section className="signup dark" id="priority-list" aria-labelledby="signup-title">
       <div className="wrap signup-grid">
         <div className="signup-copy">
-          <h2 id="signup-title">{signup.heading}</h2>
+          <h2 id="signup-title">{rich(signup.heading)}</h2>
           <p>{signup.text}</p>
           <Pricing />
           <p className="small">{signup.disclaimer}</p>

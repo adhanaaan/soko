@@ -35,9 +35,9 @@ Python dict. Change a string, save, and the page updates.
 - **Pricing** stays hidden until `pricing.showPricing` is set to `true`. When
   hidden, the page says "Join the priority list for first access when bookings
   open". Prices never appear in metadata or the share image.
-- **Page sections** (in order): `hero`, `problem`, `method` (the three clinical steps and Dr. Tong's quote), `moments`, `place` (Montigo), `offer`, `weekend`
+- **Page sections** (in order): `hero`, `problem`, `method` (the three clinical steps and Dr. Tong's quote), `place` (Montigo), `moments`, `offer`, `weekend`
   (the full session list sits behind "See the full schedule"),
-  `science`, `faq`, `signup`. Keep each one short: one idea per section.
+  `science`, `guides`, `faq`, `note`, `signup`. Keep each one short: one idea per section.
 - **Evidence boundary**: `science.note` must stay visible wherever the
   FINGER trial is mentioned.
 - **Photos**: put an approved image in `public/images/` and set `src` on
@@ -86,15 +86,18 @@ docs/                        priority-list setup + Google Apps Script
 
 ## Before launch
 
-**Placeholders:** any text in `[square brackets]` in `src/content/site.ts`
-shows highlighted on the live page. Search the file for `[` and replace each
-one: clinician names, titles, bios and photos (`guides`), what each
-assessment measures (`measures`), ferry times (`weekend.timing`), villa
-pairing (FAQ), the group-booking line (`signup.corporate`), the guarantee
-(`offer.guarantee`), the bookings-open date (`offer.scarcity`) and Dr. Tong's
-quote (`expertQuote`). The founder note (`note`) is a draft for Adnan to
-rewrite in his own words.
+**Hidden until supplied** (all in `src/content/site.ts`; nothing half-finished
+shows on the live page):
 
+- `expertQuote.quote`: Dr. Tong's quote. Set it and it appears under "How it works".
+- `guides.people[].bio` and `.photo`: until set, each expert shows "Full bio coming soon".
+- `offer.guarantee.text`: the promise box appears once this is set.
+- `moments.items[].src`: the "Slow down. On purpose." photo section appears once
+  any photo is set; until then the moments show as tags under "The place".
+
+Any text you write in `[square brackets]` still renders highlighted, so you can
+flag something for review. The founder note (`note`) is a draft for Adnan to
+rewrite in his own words.
 
 Content awaiting confirmation (all in `src/content/site.ts`):
 

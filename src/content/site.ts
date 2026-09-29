@@ -68,7 +68,7 @@ export const seo = {
 
 export const hero = {
   headline: "Brain clarity, *in one weekend.*",
-  lede: "Two nights at Montigo Resorts Nongsa, 30 minutes by ferry from Singapore. Measure your brain health, understand it with a clinician, and leave with a clear head and a clear plan.",
+  lede: "Two nights by the sea, 30 minutes from Singapore. Clinically led. Leave with a clear head and a clear plan.",
   badge: "Clinically led retreat · 20–22 Nov 2026",
   stats: [
     { value: "Clinically led", label: "by Dr. Stephen Tong" },
@@ -133,21 +133,20 @@ export const method = {
 
 /** The offer stack: every component named, plus a bonus, a guarantee and a real deadline. */
 export const offer = {
-  heading: "Everything in your weekend.",
+  heading: "One weekend. *Everything included.*",
   stack: [
-    { name: "Two Nights at Montigo", text: "A shared two-bedroom villa by the sea. Every meal, every session and your downtime, all planned for you." },
-    { name: "The Clarity Programme", text: "Clinician-guided brain health sessions, morning movement, chef-led food and recovery, built on the four FINGER areas." },
-    { name: "Your Private Brain Health Baseline", text: `A ${partners.assessmentName} check plus clinician-guided heart and metabolic context.` },
-    { name: "Your Results, Explained", text: "One-to-one, in plain English, before you leave on Sunday." },
-    { name: "The 20-Day Plan", text: "Two small habits that fit your week, with prompts and two group check-ins." },
+    { name: "Two nights at Montigo", text: "A shared two-bedroom sea-view villa. Every meal, session and bit of downtime planned for you." },
+    { name: "The Clarity Programme", text: "Clinician-guided brain health sessions, morning movement, chef-led food and recovery." },
+    { name: "Your baseline, results and plan", text: `Your private ${partners.assessmentName} baseline, explained one-to-one, and a 20-day plan to take home.` },
     { name: "A Soko session in Singapore", text: "Meet the group again back home.", bonus: true },
   ],
   promises: ["Small group of 15–20", "No fitness level needed", "Results before you leave"],
+  // Hidden until decided. Set text to show it, e.g. "Full refund if you cancel 30+ days before."
   guarantee: {
     title: "Our promise",
-    text: "[Guarantee to decide, e.g. full refund if you cancel 30+ days before, or if you don't leave with a clear plan.]",
+    text: null as string | null,
   },
-  scarcity: "15–20 places only · Bookings open [date]",
+  scarcity: "The priority list hears first.",
   note: "Proposed package. Final details before bookings open.",
 };
 
@@ -172,10 +171,8 @@ export const areas: Pillar[] = [
 export const note = {
   heading: "Why we built Clarity.",
   paragraphs: [
-    "Most of us plan our careers, our money and our retirement in detail. Very few of us have a plan for the brain we'll need to enjoy any of it.",
-    "We kept meeting sharp, successful people who could feel their focus slipping and didn't know where to start. The advice they found was either vague or alarming.",
-    "So we built the weekend we wanted for ourselves. Real science, explained simply, somewhere that makes you slow down. You leave knowing where you stand and what to do next.",
-    "If that sounds like you, I'd love to meet you in November.",
+    "We kept meeting sharp, successful people who could feel their focus slipping and didn't know where to start. The advice was either vague or alarming.",
+    "So we built the weekend we wanted for ourselves: real science, explained simply, somewhere that makes you slow down. I'd love to meet you in November.",
   ],
   signature: "Adnan",
   name: "Adnan Azam Mohammed",
@@ -183,35 +180,28 @@ export const note = {
   photo: null as string | null,
 };
 
+/** Hidden until Dr. Tong supplies it: set `quote` to his words to show it under "How it works". */
 export const expertQuote = {
-  quote: "[A short quote from Dr. Stephen Tong on why brain health matters in midlife, in his own words.]",
+  quote: null as string | null,
   name: "Dr. Stephen Tong",
   role: "Clinical Lead",
   photo: null as string | null,
 };
 
 export const guides = {
-  heading: "Who's guiding you.",
+  heading: "Guided by experts, *start to finish.*",
+  // Set `bio` to a line on credentials and `photo` to "/images/<file>.jpg" to show them.
   people: [
-    { initials: "ST", name: "Dr. Stephen Tong", role: "Clinical Lead", bio: "[Credentials and one line on his clinical work]", photo: null as string | null },
-    { initials: "AA", name: "Adnan Azam Mohammed", role: "Brain Health Expert", bio: "[Credentials and one line on his brain health work]", photo: null as string | null },
-    { initials: "AP", name: "Ann Phun", role: "Mindfulness Expert", bio: "[Credentials and one line on her mindfulness practice]", photo: null as string | null },
+    { initials: "ST", name: "Dr. Stephen Tong", role: "Clinical Lead", bio: null as string | null, photo: null as string | null },
+    { initials: "AA", name: "Adnan Azam Mohammed", role: "Brain Health Expert", bio: null as string | null, photo: null as string | null },
+    { initials: "AP", name: "Ann Phun", role: "Mindfulness Expert", bio: null as string | null, photo: null as string | null },
   ],
-};
-
-export const measures = {
-  heading: "What we measure.",
-  items: [
-    { name: `${partners.assessmentName} cognitive baseline`, what: "[What it assesses, in Gray Matter Solutions' words]", tag: "Private" },
-    { name: "Continuous glucose monitoring", what: "How your glucose responds to real meals over the weekend.", tag: "Where suitable" },
-    { name: "Vascular health", what: "[Checks to confirm, e.g. blood pressure]", tag: "Clinician-guided" },
-    { name: "Metabolic health", what: "[Checks to confirm]", tag: "Clinician-guided" },
-  ],
+  bioPending: "Full bio coming soon",
 };
 
 export const weekend = {
-  heading: "Your three days.",
-  timing: "Leave Friday [2pm]. Back in Singapore Sunday [afternoon].",
+  heading: "Three days. *One clear plan.*",
+  timing: "Leave Friday afternoon. Back in Singapore on Sunday.",
   days: [
     {
       day: "Fri",
@@ -243,7 +233,7 @@ export const place = {
   facts: [
     { value: "30 min", label: "Ferry from Tanah Merah to Nongsapura" },
     { value: "1 km", label: "Private seafront" },
-    { value: "2-bed", label: "Sea-view villa, [private pool to confirm]" },
+    { value: "2-bed", label: "Sea-view villas" },
     { value: "All in", label: "Meals, sessions and downtime on site" },
   ],
   credit: "Hosted by Montigo Resorts",
@@ -274,13 +264,13 @@ export const faq = [
   { q: "My brain fog is new or severe.", a: "See your doctor first. Brain fog has many causes." },
   { q: "Do I need to be fit?", a: "No. Every session has an easy option." },
   { q: "Is my data private?", a: "Yes. Your results are shared with you, never the group." },
-  { q: "Where do I stay?", a: "A shared two-bedroom villa. [Bring a partner, friend or colleague to share with.]" },
+  { q: "Where do I stay?", a: "A shared two-bedroom sea-view villa. Sharing details come before bookings open." },
   { q: "Are dates and price set?", a: "Not yet. The priority list hears first. Joining is free and doesn't reserve a place." },
 ];
 
 export const signup = {
-  heading: "Get first access.",
-  corporate: "Bringing your leadership team? [Email us about group bookings.]",
+  heading: "Be first in. *15–20 places.*",
+  corporate: "Bringing your leadership team? Email us about group bookings.",
   text: "Free. No commitment.",
   disclaimer: "Joining doesn't reserve a place.",
   consent: "I agree that Soko may store my name and email to contact me about Clarity. I can ask to be removed at any time.",
